@@ -1,0 +1,46 @@
+@media (max-width: 992px) {
+    .nav__links {
+        gap: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav__links {
+        background-color: var(--color3);
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20vh;
+        transition: 0.5s;
+
+        & a{
+            color: var(--color1);
+            font-weight: 900;
+        }
+    }
+
+    .navLinks_active{
+        left: 0;
+    }
+
+    .nav__buttons {
+        position: fixed;
+        bottom: 10vh;
+        left: 100%;
+        flex-direction: column;
+        width: 100%;
+        transition: 0.5s;
+    }
+
+    .navButtons_active{
+        left: 0;
+    }
+
+    .hamburger{
+        display: block;  
+    }
+}
