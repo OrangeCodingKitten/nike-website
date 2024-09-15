@@ -6,12 +6,76 @@ const navLinksAll = document.querySelectorAll('.nav__links a');
 console.log(navLinksAll);
 const navButtonsAll = document.querySelectorAll('.nav__buttons button');
 const categoriesButtonsAll = document.querySelectorAll('.categories__buttons button');
+const body = document.querySelector('body');
+
+const darkThemeMq = window.matchMedia('(prefers-color-scheme:dark)');
+
+const buttonThemeToggle = document.querySelector('.button-theme-toggle');
+
+let buttonThemeText;
+let buttonThemeIcon;
+
+// function showTheme() {
+//     if (darkThemeMq.matches) {
+        
+//     } else {
+        
+//     }
+// }
+
+// showTheme();
+
+function getTheme() {
+    if (darkThemeMq.matches) {
+        body.classList.add('dark-team');
+    } else {
+        body.classList.add('light-team');
+    }
+}
+
+getTheme();
+
+
+
+
+buttonThemeToggle.onclick = function () {
+        body.classList.toggle('dark-team');
+        body.classList.toggle('light-team');
+}
+
+function checkClassAvailability() {
+    if (body.classList.contains('light-team')) {
+        buttonThemeText = 'Светлая';
+        buttonThemeIcon = 'fa-solid fa-sun';
+    } else if (body.classList.contains('dark-team')) {
+        buttonThemeText = 'Тёмная';
+        buttonThemeIcon = 'fa-solid fa-moon';
+    }
+}
+
+checkClassAvailability();
+
+
+console.log(buttonThemeText);
+console.log(buttonThemeIcon);
+
+
+
+buttonThemeToggle.innerHTML = `
+    <button class="button-theme-toggle">
+          <i class="${buttonThemeIcon}"></i>
+          <span>${buttonThemeText}</span>
+    </button>
+`
+
+
 
 hamburger.onclick = function () {
     navLinks.classList.toggle('navLinks_active');
     hamburger.classList.toggle('hamburger_active');
     navButtons.classList.toggle('navButtons_active');
     navLogo.classList.toggle('navLogo_active');
+    buttonThemeToggle.classList.toggle('buttonThemeToggle_active'); //Кнопка смены темы
 }
 
 navLogo.onclick = function () {
@@ -19,6 +83,7 @@ navLogo.onclick = function () {
     hamburger.classList.remove('hamburger_active');
     navButtons.classList.remove('navButtons_active');
     navLogo.classList.remove('navLogo_active');
+    buttonThemeToggle.classList.remove('buttonThemeToggle_active') //Кнопка смены темы
 }
 
 for (let i = 0; i < 4; i++) {
@@ -27,6 +92,7 @@ for (let i = 0; i < 4; i++) {
         hamburger.classList.remove('hamburger_active');
         navButtons.classList.remove('navButtons_active');
         navLogo.classList.remove('navLogo_active');
+        buttonThemeToggle.classList.remove('buttonThemeToggle_active') //Кнопка смены темы
     }
 }
 
@@ -36,6 +102,7 @@ for (let i = 0; i < 3; i++) {
         hamburger.classList.remove('hamburger_active');
         navButtons.classList.remove('navButtons_active');
         navLogo.classList.remove('navLogo_active');
+        buttonThemeToggle.classList.remove('buttonThemeToggle_active') //Кнопка смены темы
     }
 }
 
@@ -335,3 +402,4 @@ function heartsClick() {
         });
     });
 }
+
