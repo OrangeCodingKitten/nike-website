@@ -7,66 +7,216 @@ console.log(navLinksAll);
 const navButtonsAll = document.querySelectorAll('.nav__buttons button');
 const categoriesButtonsAll = document.querySelectorAll('.categories__buttons button');
 const body = document.querySelector('body');
-
 const darkThemeMq = window.matchMedia('(prefers-color-scheme:dark)');
-
 const buttonThemeToggle = document.querySelector('.button-theme-toggle');
 
-let buttonThemeText;
-let buttonThemeIcon;
 
-// function showTheme() {
-//     if (darkThemeMq.matches) {
-        
-//     } else {
-        
-//     }
-// }
 
-// showTheme();
 
-function getTheme() {
-    if (darkThemeMq.matches) {
-        body.classList.add('dark-team');
-    } else {
-        body.classList.add('light-team');
+
+const searchButtonOpen = document.getElementById('search-button-open');
+const searchDiv = document.querySelector('.search-div');
+const searchButtonClose = document.querySelector('.search-button-close');
+const searchInput = document.getElementById('searchInput');
+
+const signupDiv = document.querySelector('.signup-div');
+const buttonSignupOpen = document.getElementById('button-signup-open')
+const signupButtonClose = document.querySelector('.signup-button-close');
+
+const buttonLoginLink = document.querySelector('.button-login-link');
+const loginDiv = document.querySelector('.login-div');
+const loginButtonClose = document.querySelector('.login-button-close');
+const buttonLogin = document.querySelector('.button-login');
+const buttonSignupLink = document.querySelector('.button-signup-link');
+
+const buttonSignup = document.querySelector('.button-signup');
+
+searchButtonOpen.onclick = function () {
+    searchDiv.classList.toggle('div_active');
+    signupDiv.classList.remove('div_active');
+    loginDiv.classList.remove('div_active');
+    
+}
+
+searchButtonClose.onclick = function () {
+    searchDiv.classList.remove('div_active');
+}
+
+
+buttonSignupOpen.onclick = function () {
+    signupDiv.classList.toggle('div_active');
+    searchDiv.classList.remove('div_active');
+    loginDiv.classList.remove('div_active');
+}
+
+signupButtonClose.onclick = function () {
+    signupDiv.classList.remove('div_active');
+}
+
+buttonLoginLink.onclick = function () {
+    loginDiv.classList.add('div_active');
+    signupDiv.classList.remove('div_active');
+}
+
+loginButtonClose.onclick = function () {
+    loginDiv.classList.remove('div_active');
+}
+
+buttonSignupLink.onclick = function () {
+    loginDiv.classList.remove('div_active');
+    signupDiv.classList.add('div_active');
+}
+
+const signupNameInput = document.getElementById('signup-name-input');
+const signupEmailInput = document.getElementById('signup-email-input');
+const signupPasswordInput = document.getElementById('signup-password-input');
+const signupPasswordRepitInput = document.getElementById('signup-password-repit-input');
+const loginEmailInput = document.getElementById('login-email-input');
+const loginPasswordInput = document.getElementById('login-password-input');
+
+const signupButtonClear = document.querySelector('.signup-button-clear');
+
+signupButtonClear.onclick = function () {
+    signupNameInput.value = '';
+    signupEmailInput.value = '';
+    signupPasswordInput.value = '';
+    signupPasswordRepitInput.value = '';
+    labelUpRemove ();
+}
+
+const plaseholderMoveInputs = document.querySelectorAll('.plaseholder-move');
+
+console.log(plaseholderMoveInputs);
+
+for (let i = 0; i < plaseholderMoveInputs.length; i++) {
+    plaseholderMoveInputs[i].onfocus = function () {
+        plaseholderMoveInputs[i].parentNode.querySelector('label').classList.add('label-up');               //**parentNode выходим в элемент внутри которого находится инпут**//
     }
 }
 
-getTheme();
+for (let i = 0; i < plaseholderMoveInputs.length; i++) {
+    plaseholderMoveInputs[i].onblur = function () {
+        if (plaseholderMoveInputs[i].value == '') {
+            plaseholderMoveInputs[i].parentNode.querySelector('label').classList.remove('label-up');
+        }
+    }
+}
+
+
+function labelUpRemove () {
+    const labelsSignup = document.querySelectorAll('.signup-label');
+    
+}
 
 
 
 
-buttonThemeToggle.onclick = function () {
-        body.classList.toggle('dark-team');
-        body.classList.toggle('light-team');
+
+buttonSignup.onclick = function () {
+    if (signupNameInput.value != '') {  
+        if (signupEmailInput.value != '') {
+            if (signupPasswordInput.value.length > 7) {
+                if (signupPasswordInput.value === signupPasswordRepitInput.value) {
+                    const savedEmail = localStorage.getItem(signupEmailInput.value);
+                    if (savedEmail == null) {
+                        alert('Вы успешно зарегистрировались')
+                        localStorage.setItem(signupEmailInput.value, signupPasswordInput.value);
+                        signupNameInput.value = '';
+                        signupEmailInput.value = '';
+                        signupPasswordInput.value = '';
+                        signupPasswordRepitInput.value = '';
+                    } else {
+                        alert('Эл. почта уже используется');
+                    }
+                } else {
+                    alert('Пароли не совпадают');
+                }
+            } else {
+                alert('Ваш пароль слишком короткий');
+            }
+        } else {
+            alert('Введите электронную почту');
+        }
+    } else {
+        alert('Введите ваше имя');
+    }
+}
+
+buttonLogin.onclick = function () {
+    const savedEmailLogin = localStorage.getItem(loginEmailInput.value);
+    if(savedEmailLogin == null) {
+        alert('Аккаунт не найден');
+    } else {
+        if(loginPasswordInput.value == savedEmailLogin) {
+            alert('Вы успешно вошли в аккаунт');
+            loginEmailInput.value = '';
+            loginPasswordInput.value =  '';
+            loginDiv.classList.remove('div_active');
+        } else {
+            alert('Пароль неверный')
+        }
+    } 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let buttonThemeIcon;
+
+function getTheme() {
+    console.log(buttonThemeToggle)
+    if (darkThemeMq.matches) {
+        body.classList.add('dark-team');
+        body.classList.remove('light-team');
+    } else {
+        body.classList.add('light-team');
+        body.classList.remove('dark-team');
+    }
 }
 
 function checkClassAvailability() {
+    console.log(buttonThemeToggle)
     if (body.classList.contains('light-team')) {
-        buttonThemeText = 'Светлая';
         buttonThemeIcon = 'fa-solid fa-sun';
     } else if (body.classList.contains('dark-team')) {
-        buttonThemeText = 'Тёмная';
         buttonThemeIcon = 'fa-solid fa-moon';
     }
+
+    buttonThemeToggle.innerHTML = `
+          <i class="${buttonThemeIcon}"></i>
+`
 }
 
+getTheme();
 checkClassAvailability();
 
+buttonThemeToggle.onclick = function () {
+    console.log(buttonThemeToggle)
+    body.classList.toggle('dark-team');
+    body.classList.toggle('light-team');
+    navLinks.classList.remove('navLinks_active');
+    hamburger.classList.remove('hamburger_active');
+    navButtons.classList.remove('navButtons_active');
+    navLogo.classList.remove('navLogo_active');
 
-console.log(buttonThemeText);
-console.log(buttonThemeIcon);
+    checkClassAvailability();
+}
 
-
-
-buttonThemeToggle.innerHTML = `
-    <button class="button-theme-toggle">
-          <i class="${buttonThemeIcon}"></i>
-          <span>${buttonThemeText}</span>
-    </button>
-`
 
 
 
@@ -75,7 +225,7 @@ hamburger.onclick = function () {
     hamburger.classList.toggle('hamburger_active');
     navButtons.classList.toggle('navButtons_active');
     navLogo.classList.toggle('navLogo_active');
-    buttonThemeToggle.classList.toggle('buttonThemeToggle_active'); //Кнопка смены темы
+    body.classList.toggle('scroll-none');
 }
 
 navLogo.onclick = function () {
@@ -83,7 +233,7 @@ navLogo.onclick = function () {
     hamburger.classList.remove('hamburger_active');
     navButtons.classList.remove('navButtons_active');
     navLogo.classList.remove('navLogo_active');
-    buttonThemeToggle.classList.remove('buttonThemeToggle_active') //Кнопка смены темы
+    body.classList.remove('scroll-none');
 }
 
 for (let i = 0; i < 4; i++) {
@@ -92,17 +242,19 @@ for (let i = 0; i < 4; i++) {
         hamburger.classList.remove('hamburger_active');
         navButtons.classList.remove('navButtons_active');
         navLogo.classList.remove('navLogo_active');
-        buttonThemeToggle.classList.remove('buttonThemeToggle_active') //Кнопка смены темы
+        body.classList.remove('scroll-none');
     }
 }
 
-for (let i = 0; i < 3; i++) {
-    navButtonsAll[i].onclick = function () {
-        navLinks.classList.remove('navLinks_active');
-        hamburger.classList.remove('hamburger_active');
-        navButtons.classList.remove('navButtons_active');
-        navLogo.classList.remove('navLogo_active');
-        buttonThemeToggle.classList.remove('buttonThemeToggle_active') //Кнопка смены темы
+for (let i = 0; i < 4; i++) {
+    if (i != 0) {
+        navButtonsAll[i].onclick = function () {
+            navLinks.classList.remove('navLinks_active');
+            hamburger.classList.remove('hamburger_active');
+            navButtons.classList.remove('navButtons_active');
+            navLogo.classList.remove('navLogo_active');
+            body.classList.remove('scroll-none');
+        }
     }
 }
 
@@ -322,7 +474,15 @@ function categoriesCardRender(type) {       /**Создается функция
             }
         }
     }
-    heartsClick();
+    function categoriesHeartClick() {
+        let categoriesHearts = document.querySelectorAll('.categories-heart');
+        categoriesHearts.forEach(categoriesHeart => {
+            categoriesHeart.addEventListener('click', function () {
+                categoriesHeart.classList.toggle('heart-active');
+            });
+        });
+    }
+    categoriesHeartClick();
 }
 
 categoriesCardRender('all'); /**При обновлении страницы показывает все карточки**/
@@ -402,4 +562,12 @@ function heartsClick() {
         });
     });
 }
+heartsClick();
+
+
+
+
+
+
+
 

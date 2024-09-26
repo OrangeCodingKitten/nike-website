@@ -14,6 +14,11 @@ body {
   font-family: "Comfortaa", sans-serif;
   background-color: var(--color1);
   color: var(--color2);
+  transition: 0.5s;
+
+  &.scroll-none {
+    overflow-y: hidden;
+  }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 8px;
@@ -44,6 +49,236 @@ body {
     --color6: #646752;
     --color7: #5f5f5f;
   }
+}
+
+.search-div {
+  background-color: var(--color6);
+  border-radius: 16px;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+  opacity: 0;
+  visibility: hidden;
+  padding: 40px;
+  transition: 0.3s;
+  box-shadow: 0px 0px 20px 0px var(--color4);
+
+  & input {
+    border: none;
+    border-radius: 30px;
+    height: 30px;
+    width: 100%;
+    outline: none;
+  }
+
+  & h3 {
+    
+  }
+}
+
+.signup-div {
+  width: 450px;
+  background-color: var(--color6);
+  border-radius: 16px;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+  opacity: 0;
+  visibility: hidden;
+  padding: 30px 40px;
+  transition: 0.3s;
+  box-shadow: 0px 0px 20px 0px var(--color4);
+  gap: 28px;
+  display: flex;
+  flex-direction: column;
+
+  & h3 {
+    font-family: Montserrat;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  & div {
+    position: relative;
+
+    & input {
+      border: none;
+      border-radius: 30px;
+      height: 30px;
+      width: 100%;
+      outline: none;
+      padding: 10px;
+    }
+  
+    & .signup-label {
+      position: absolute;
+      left: 10px;
+      top: 6px;
+      transition: 0.3s;
+      pointer-events: none;
+      color: black;
+    }
+
+    /* & input:focus + .signup-label {
+      top: -20px;
+    } */
+  }
+}
+
+.login-div {
+  width: 450px;
+  background-color: var(--color6);
+  border-radius: 16px;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+  opacity: 0;
+  visibility: hidden;
+  padding: 30px 40px;
+  transition: 0.3s;
+  box-shadow: 0px 0px 20px 0px var(--color4);
+  gap: 28px;
+  display: flex;
+  flex-direction: column;
+
+  & h3 {
+    font-family: Montserrat;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  & div {
+    position: relative;
+
+    & input {
+      border: none;
+      border-radius: 30px;
+      height: 30px;
+      width: 100%;
+      outline: none;
+      padding: 10px;
+    }
+  
+    & .login-label {
+      position: absolute;
+      left: 10px;
+      top: 6px;
+      transition: 0.3s;
+      pointer-events: none;
+      color: black;
+    }
+
+    & input:focus + .login-label {
+      top: -20px;
+    }
+  }
+}
+
+
+
+
+
+.signup-button-clear {
+  max-width: max-content;
+  max-height: max-content;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 54px;
+  top: 34px;
+  cursor: pointer;
+
+  & i {
+    font-size: 20px;
+    transition: 0.3s;
+
+    &:hover {
+      color: rgb(212, 78, 78);
+    }
+  }
+}
+
+
+
+
+
+.button-styles-1 {
+  background-color: var(--color3);
+    border: none;
+    font-family: "Comfortaa", sans-serif;
+    color: var(--color1);
+    height: 40px;
+    border-radius: 30px;
+    font-size: 16px;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #7a8337;
+    }
+}
+
+.button-styles-2 {
+  background-color: var(--color2);
+    border: none;
+    font-family: "Comfortaa", sans-serif;
+    color: var(--color1);
+    height: 40px;
+    border-radius: 30px;
+    font-size: 16px;
+    color: var(--color1);
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color1);
+      color: var(--color2);
+    }
+}
+
+.div_active {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.button-close_styles {
+  color: white;
+  background-color: rgb(228, 73, 73);
+  border-radius: 50%;
+  border: none;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  transition: 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: rgb(228, 228, 228);
+    background-color: rgb(201, 73, 73);
+  }
+}
+
+.button-theme-toggle {
+  border: none;
+  background-color: transparent;
+  font-family: "Comfortaa", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px !important;
+  color: var(--color2);
 }
 
 .nav {
@@ -196,7 +431,7 @@ header {
       }
     }
 
-    & > p {
+    &>p {
       max-height: 457px;
       font-size: 16px;
       font-weight: 400;
@@ -458,8 +693,7 @@ header {
       background: transparent;
     }
 
-    & .categories__card {
-    }
+    & .categories__card {}
 
     & .card {
       width: 400px;
@@ -646,8 +880,7 @@ header {
       visibility: hidden;
       transition: 0.5s;
 
-      &:hover {
-      }
+      &:hover {}
     }
 
     & .new-models-card__info {
@@ -832,4 +1065,8 @@ footer {
 
 .heart-active {
   fill: var(--color1) !important;
+}
+
+.label-up {
+  top: -20px !important;
 }

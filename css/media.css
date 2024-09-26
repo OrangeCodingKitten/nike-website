@@ -1,9 +1,4 @@
 @media (max-width: 1300px) {
-    .buttonThemeToggle {
-        visibility: hidden;
-        opacity: 0;           //Кнопка смены темы
-      }
-
     .categories {
         & .categories__list {
             position: relative;
@@ -147,19 +142,6 @@
 }
 
 @media (max-width: 768px) {
-
-    .button-theme-toggle {
-        position: fixed;
-        bottom: ;
-        left: 100%;
-        flex-direction: column;
-        transition: 0.5s;
-    }
-
-    .buttonThemeToggle_active {
-        left: 0;
-        display: flex;
-    }
 
     .nav__links {
         background-color: var(--color3);
@@ -470,4 +452,3 @@
         }
     }
 }
-
