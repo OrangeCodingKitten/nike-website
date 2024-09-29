@@ -76,6 +76,37 @@ const loginPasswordInput = document.getElementById('login-password-input');
 
 const signupButtonClear = document.querySelector('.signup-button-clear');
 
+
+
+
+
+
+
+
+
+
+
+
+function labelUpRemove () {
+    const labelsSignup = document.querySelectorAll('.signup-label');
+
+    for (let i = 0; i < labelsSignup.length; i++) {
+        labelsSignup[i].classList.remove('label-up');
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 signupButtonClear.onclick = function () {
     signupNameInput.value = '';
     signupEmailInput.value = '';
@@ -103,10 +134,6 @@ for (let i = 0; i < plaseholderMoveInputs.length; i++) {
 }
 
 
-function labelUpRemove () {
-    const labelsSignup = document.querySelectorAll('.signup-label');
-    
-}
 
 
 
