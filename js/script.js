@@ -35,7 +35,7 @@ searchButtonOpen.onclick = function () {
     searchDiv.classList.toggle('div_active');
     signupDiv.classList.remove('div_active');
     loginDiv.classList.remove('div_active');
-    
+
 }
 
 searchButtonClose.onclick = function () {
@@ -87,7 +87,7 @@ const signupButtonClear = document.querySelector('.signup-button-clear');
 
 
 
-function labelUpRemove () {
+function labelUpRemove() {
     const labelsSignup = document.querySelectorAll('.signup-label');
 
     for (let i = 0; i < labelsSignup.length; i++) {
@@ -112,7 +112,7 @@ signupButtonClear.onclick = function () {
     signupEmailInput.value = '';
     signupPasswordInput.value = '';
     signupPasswordRepitInput.value = '';
-    labelUpRemove ();
+    labelUpRemove();
 }
 
 const plaseholderMoveInputs = document.querySelectorAll('.plaseholder-move');
@@ -140,7 +140,7 @@ for (let i = 0; i < plaseholderMoveInputs.length; i++) {
 
 
 buttonSignup.onclick = function () {
-    if (signupNameInput.value != '') {  
+    if (signupNameInput.value != '') {
         if (signupEmailInput.value != '') {
             if (signupPasswordInput.value.length > 7) {
                 if (signupPasswordInput.value === signupPasswordRepitInput.value) {
@@ -171,26 +171,46 @@ buttonSignup.onclick = function () {
 
 buttonLogin.onclick = function () {
     const savedEmailLogin = localStorage.getItem(loginEmailInput.value);
-    if(savedEmailLogin == null) {
+    if (savedEmailLogin == null) {
         alert('Аккаунт не найден');
     } else {
-        if(loginPasswordInput.value == savedEmailLogin) {
+        if (loginPasswordInput.value == savedEmailLogin) {
             alert('Вы успешно вошли в аккаунт');
             loginEmailInput.value = '';
-            loginPasswordInput.value =  '';
+            loginPasswordInput.value = '';
             loginDiv.classList.remove('div_active');
         } else {
             alert('Пароль неверный')
         }
-    } 
+    }
 }
 
 
 
+const searchDivWithProducts = document.querySelector('.search-div-with-products');
 
 
 
 
+
+searchCards = []
+
+searchInput.oninput = function () {
+    searchCards.splice(0, searchCards.length);
+    let searchValue = searchInput.value.trim();
+    if (searchValue.length >= 3) {
+        for (let i = 0; i < categoriesCardStore.length; i++) {
+            const categoriesCard = categoriesCardStore[i];
+            if (categoriesCard.name.toLowerCase().search(searchValue.toLowerCase()) != -1) {
+                searchCards.unshift(categoriesCard)
+                console.log(searchCards)
+                searchDivWithProducts.classList.add('search-div-with-products_active');
+            } else {
+                searchDivWithProducts.classList.remove('search-div-with-products_active');
+            }
+        }
+    }
+}
 
 
 

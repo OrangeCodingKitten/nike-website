@@ -63,18 +63,33 @@ body {
   padding: 40px;
   transition: 0.3s;
   box-shadow: 0px 0px 20px 0px var(--color4);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 
-  & input {
+  & #searchInput {
     border: none;
     border-radius: 30px;
     height: 30px;
     width: 100%;
     outline: none;
     font-family: "Comfortaa", sans-serif;
+    padding: 10px;
   }
 
   & h3 {
     
+  }
+
+  & .search-div-with-products {
+    display: none;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+  }
+
+  & .search-div-with-products_active {
+    display: block;
   }
 }
 
