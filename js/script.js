@@ -203,12 +203,20 @@ searchInput.oninput = function () {
             const categoriesCard = categoriesCardStore[i];
             if (categoriesCard.name.toLowerCase().search(searchValue.toLowerCase()) != -1) {
                 searchCards.unshift(categoriesCard)
-                console.log(searchCards)
                 searchDivWithProducts.classList.add('search-div-with-products_active');
-            } else {
-                searchDivWithProducts.classList.remove('search-div-with-products_active');
+                console.log(searchCards)
+                console.log('я нашел карты')
+                
+
+                searchDivWithProducts.innerHTML = `
+                     
+                `
+
+
             }
         }
+    } else {
+        searchDivWithProducts.classList.remove('search-div-with-products_active');
     }
 }
 

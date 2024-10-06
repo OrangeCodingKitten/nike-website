@@ -85,7 +85,7 @@ body {
     display: none;
     width: 100px;
     height: 100px;
-    background-color: red;
+    background-color: var(--color3);
   }
 
   & .search-div-with-products_active {
