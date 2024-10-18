@@ -1,3 +1,15 @@
+@media (max-width: 2000px) {
+    .search-div {
+        width: 34%;
+    }
+}
+
+@media (max-width: 1600px) {
+    .search-div {
+        width: 44%;
+    }
+}
+
 @media (max-width: 1300px) {
     .categories {
         & .categories__list {
@@ -14,6 +26,10 @@
         left: -20px;
         padding-left: 20px;
         padding-right: 20px;
+    }
+
+    .search-div {
+        width: 50%;
     }
 }
 
@@ -139,6 +155,39 @@
             & button {}
         }
     }
+
+    .search-div {
+        & .search__list {
+            & .search-card {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+
+                & .search-card__photo {
+                    width: 80%;
+                    padding: 16px;
+                }
+
+                & .search-card__info {
+                    align-items: center;
+
+                    & p {
+                        font-size: 16px;
+                        text-align: center;
+                    }
+
+                    /* & div {
+                        & p{
+                            font-size: 16px;
+                            & span {
+                                font-size: 16px;
+                            }
+                        }
+                    } */
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 768px) {
@@ -242,6 +291,57 @@
             }
         }
     }
+
+    .search-div {
+        padding: 40px 24px 24px 24px;
+
+        & .search__list {
+            & .search-card {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+
+                & .search-card__photo {
+                    width: 100%;
+                    padding: 16px;
+                }
+
+                & .search-card__info {
+                    align-items: center;
+
+                    & p {
+                        font-size: 16px;
+                        text-align: center;
+                    }
+
+                    & div {
+                        & p {
+                            font-size: 16px;
+
+                            & span {
+                                font-size: 16px;
+                            }
+                        }
+
+                        & .card__rating {
+                            & i {
+                                font-size: 14px;
+                            }
+
+                            & span {
+                                font-size: 14px;
+                            }
+                        }
+                    }
+
+                    & button {
+                        padding: 0;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 600px) {
@@ -291,6 +391,59 @@
                         }
                     }
                 }
+            }
+        }
+    }
+
+    .signup-div {
+        width: 80%;
+
+        & h3 {
+            font-size: 20px;
+        }
+
+        & div {
+            & input {
+                height: 40px;
+                width: 100%;
+                padding: 8px;
+            }
+
+            & .signup-label {
+                font-size: 14px;
+                left: 10px;
+                top: 6px;
+            }
+        }
+
+        & .button-styles-1 {
+            font-size: 12px;
+        }
+
+        & .button-styles-2 {
+            font-size: 12px;
+        }
+    }
+
+    .login-div {
+        width: 80%;
+
+        & h3 {
+            font-size: 20px;
+        }
+
+        & div {
+
+            & input {
+                height: 40px;
+                width: 100%;
+                padding: 8px;
+            }
+
+            & .login-label {
+                font-size: 14px;
+                left: 10px;
+                top: 6px;
             }
         }
     }
@@ -401,6 +554,63 @@
             }
         }
     }
+
+    .search-div {
+        padding: 40px 24px 24px 24px;
+
+        & .signup-button-clear {
+            left: 20%;
+            top: 10px;
+        }
+
+        & .search__list {
+            & .search-card {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                padding: 20px;
+
+                & .search-card__photo {
+                    width: 100%;
+                    padding: 12px;
+                }
+
+                & .search-card__info {
+                    align-items: center;
+
+                    & p {
+                        font-size: 16px;
+                        text-align: center;
+                    }
+
+                    & div {
+                        & p {
+                            font-size: 16px;
+
+                            & span {
+                                font-size: 16px;
+                            }
+                        }
+
+                        & .card__rating {
+                            & i {
+                                font-size: 14px;
+                            }
+
+                            & span {
+                                font-size: 14px;
+                            }
+                        }
+                    }
+
+                    & button {
+                        padding: 0;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 420px) {
@@ -435,6 +645,45 @@
             }
         }
     }
+
+    .signup-div {
+        & .signup-button-clear {
+            left: 20%;
+            top: 10px;
+        }
+
+        & div {
+            & input {}
+        }
+
+        & .button-signup {
+            font-size: 12px;
+        }
+
+        & .button-login-link {
+            font-size: 12px;
+        }
+    }
+
+    .signup-div {
+        & h3 {
+            font-size: 20px;
+        }
+
+        & div {
+            & input {
+                height: 40px;
+                width: 100%;
+                padding: 8px;
+            }
+
+            & .signup-label {
+                font-size: 14px;
+                left: 10px;
+                top: 6px;
+            }
+        }
+    }
 }
 
 @media (max-width: 360px) {
@@ -448,6 +697,38 @@
             & p {
                 font-size: 22px;
                 font-weight: 200;
+            }
+        }
+    }
+
+    .search-div {
+        padding: 40px 18px 18px 18px;
+        width: 70%;
+
+        & .search__list {
+            
+            & .search-card {
+
+                & .search-card__info {
+                    & div {
+                        gap: 6px;
+
+                        & p {
+                            font-size: 14px;
+
+                            & span {
+                                font-size: 14px;
+                            }
+                        }
+                    }
+
+                    & button {
+                        padding: 0;
+                        font-size: 12px;
+                        height: 30px;
+                        width: 90%;
+                    }
+                }
             }
         }
     }

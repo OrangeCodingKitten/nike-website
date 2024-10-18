@@ -39,8 +39,18 @@
           </button>
           <h3>Введите название кроссовок</h3>
           <input id="searchInput" type="text">
-          <div class="search-div-with-products">
+          <div class="search__list">
+            
+          </div>
+        </div>
 
+        <div class="cart-div">
+          <button class="cart-button-close button-close_styles">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h3>Корзина</h3>
+          <div class="cart__list">
+            
           </div>
         </div>
 
@@ -62,7 +72,7 @@
           </div>
           <div>
             <input id="signup-password-input" class="plaseholder-move" type="password">
-            <label class="signup-label" for="">придумайте пароль (от 8 символов)</label>
+            <label class="signup-label" for="">придумайте пароль (мин. 8 символов)</label>
           </div>
           <div>
             <input id="signup-password-repit-input" class="plaseholder-move" type="password">
@@ -77,16 +87,16 @@
             <i class="fa-solid fa-xmark"></i>
           </button>
           <h3>Если у вас уже есть аккаунт, войдите в него</h3>
-            <div>
-              <input id="login-email-input" class="plaseholder-move" type="email">
-              <label class="login-label" for="">эл. почта</label>
-            </div>
-            <div>
-              <input id="login-password-input" class="plaseholder-move" type="password">
-              <label class="login-label" for="">пароль</label>
-            </div>
-            <button class="button-login button-styles-1">Войти</button>
-            <button class="button-signup-link button-styles-2">у меня нет аккаунта</button>
+          <div>
+            <input id="login-email-input" class="plaseholder-move" type="email">
+            <label class="login-label" for="">эл. почта</label>
+          </div>
+          <div>
+            <input id="login-password-input" class="plaseholder-move" type="password">
+            <label class="login-label" for="">пароль</label>
+          </div>
+          <button class="button-login button-styles-1">Войти</button>
+          <button class="button-signup-link button-styles-2">у меня нет аккаунта</button>
         </div>
 
 
@@ -95,7 +105,7 @@
           <button href="">
             <i id="search-button-open" class="fa-solid fa-magnifying-glass"></i>
           </button>
-          <button href=""><i class="fa-solid fa-cart-shopping"></i></button>
+          <button href=""><i id="cartButtonOpen" class="fa-solid fa-cart-shopping"></i></button>
           <button href="">
             <i id="button-signup-open" class="fa-solid fa-circle-user nav__icon_user"></i>
           </button>
@@ -119,7 +129,7 @@
             Почувствуйте разницу в комфорте нового уровня, соревнуясь с самыми
             сильными бегунами.
           </p>
-          <a href="">КУПИТЬ СЕЙЧАС</a>
+          <a href="#categories">КУПИТЬ СЕЙЧАС</a>
           <div class="header__stats">
             <div>
               <span>87К+</span>

@@ -10,14 +10,14 @@ const body = document.querySelector('body');
 const darkThemeMq = window.matchMedia('(prefers-color-scheme:dark)');
 const buttonThemeToggle = document.querySelector('.button-theme-toggle');
 
-
-
-
-
 const searchButtonOpen = document.getElementById('search-button-open');
 const searchDiv = document.querySelector('.search-div');
 const searchButtonClose = document.querySelector('.search-button-close');
 const searchInput = document.getElementById('searchInput');
+
+const cartDiv = document.querySelector('.cart-div');
+const cartButtonClose = document.querySelector('.cart-button-close');
+const cartButtonOpen = document.querySelector('#cartButtonOpen');
 
 const signupDiv = document.querySelector('.signup-div');
 const buttonSignupOpen = document.getElementById('button-signup-open')
@@ -28,25 +28,35 @@ const loginDiv = document.querySelector('.login-div');
 const loginButtonClose = document.querySelector('.login-button-close');
 const buttonLogin = document.querySelector('.button-login');
 const buttonSignupLink = document.querySelector('.button-signup-link');
-
 const buttonSignup = document.querySelector('.button-signup');
 
 searchButtonOpen.onclick = function () {
     searchDiv.classList.toggle('div_active');
     signupDiv.classList.remove('div_active');
     loginDiv.classList.remove('div_active');
-
+    cartDiv.classList.remove('cart-div_active');
 }
 
 searchButtonClose.onclick = function () {
     searchDiv.classList.remove('div_active');
 }
 
+cartButtonOpen.onclick = function () {
+    cartDiv.classList.toggle('cart-div_active');
+    signupDiv.classList.remove('div_active');
+    searchDiv.classList.remove('div_active');
+    loginDiv.classList.remove('div_active');
+}
+
+cartButtonClose.onclick = function () {
+    cartDiv.classList.remove('cart-div_active');
+}
 
 buttonSignupOpen.onclick = function () {
     signupDiv.classList.toggle('div_active');
     searchDiv.classList.remove('div_active');
     loginDiv.classList.remove('div_active');
+    cartDiv.classList.remove('cart-div_active');
 }
 
 signupButtonClose.onclick = function () {
@@ -67,6 +77,9 @@ buttonSignupLink.onclick = function () {
     signupDiv.classList.add('div_active');
 }
 
+
+
+
 const signupNameInput = document.getElementById('signup-name-input');
 const signupEmailInput = document.getElementById('signup-email-input');
 const signupPasswordInput = document.getElementById('signup-password-input');
@@ -75,38 +88,6 @@ const loginEmailInput = document.getElementById('login-email-input');
 const loginPasswordInput = document.getElementById('login-password-input');
 
 const signupButtonClear = document.querySelector('.signup-button-clear');
-
-
-
-
-
-
-
-
-
-
-
-
-function labelUpRemove() {
-    const labelsSignup = document.querySelectorAll('.signup-label');
-
-    for (let i = 0; i < labelsSignup.length; i++) {
-        labelsSignup[i].classList.remove('label-up');
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 signupButtonClear.onclick = function () {
     signupNameInput.value = '';
     signupEmailInput.value = '';
@@ -115,9 +96,14 @@ signupButtonClear.onclick = function () {
     labelUpRemove();
 }
 
-const plaseholderMoveInputs = document.querySelectorAll('.plaseholder-move');
+function labelUpRemove() {
+    const labelsSignup = document.querySelectorAll('.signup-label');
+    for (let i = 0; i < labelsSignup.length; i++) {
+        labelsSignup[i].classList.remove('label-up');
+    }
+}
 
-console.log(plaseholderMoveInputs);
+const plaseholderMoveInputs = document.querySelectorAll('.plaseholder-move');
 
 for (let i = 0; i < plaseholderMoveInputs.length; i++) {
     plaseholderMoveInputs[i].onfocus = function () {
@@ -132,10 +118,6 @@ for (let i = 0; i < plaseholderMoveInputs.length; i++) {
         }
     }
 }
-
-
-
-
 
 
 
@@ -187,14 +169,8 @@ buttonLogin.onclick = function () {
 
 
 
-const searchDivWithProducts = document.querySelector('.search-div-with-products');
-
-
-
-
-
+const searchList = document.querySelector('.search__list');
 searchCards = []
-
 searchInput.oninput = function () {
     searchCards.splice(0, searchCards.length);
     let searchValue = searchInput.value.trim();
@@ -202,37 +178,64 @@ searchInput.oninput = function () {
         for (let i = 0; i < categoriesCardStore.length; i++) {
             const categoriesCard = categoriesCardStore[i];
             if (categoriesCard.name.toLowerCase().search(searchValue.toLowerCase()) != -1) {
-                searchCards.unshift(categoriesCard)
-                searchDivWithProducts.classList.add('search-div-with-products_active');
-                console.log(searchCards)
-                console.log('я нашел карты')
-                
-
-                searchDivWithProducts.innerHTML = `
-                     
-                `
-
-
+                searchCards.unshift(categoriesCard);
             }
         }
+        for (let i = 0; i < newModelsCardStore.length; i++) {
+            const cardInfoNewModels = newModelsCardStore[i];
+            if (cardInfoNewModels.name.toLowerCase().search(searchValue.toLowerCase()) != -1) {
+                searchCards.unshift(cardInfoNewModels);
+            }
+        }
+        if (searchCards.length > 0) {
+            searchList.classList.add('search__list_active');
+            searchCardRender()
+        } else {
+            searchList.classList.remove('search__list_active');
+        }
     } else {
-        searchDivWithProducts.classList.remove('search-div-with-products_active');
+        searchCards.splice(0, searchCards.length);
+        searchList.classList.remove('search__list_active');
     }
+}
+
+console.log(searchCards);
+
+function searchCardRender() {
+    searchList.innerHTML = '';
+    for (let i = 0; i < searchCards.length; i++) {
+        const searchCardDiv = document.createElement('div');
+        const searchCardInfo = searchCards[i];
+        console.log(searchCards[i]);
+
+        searchCardDiv.innerHTML = `
+        <div class="search-card">
+            <div class="search-card__photo">
+                <img src="./img/${searchCardInfo.imgPath}/${searchCardInfo.img}.png" alt="">
+            </div>
+            <div class="search-card__info">
+                <h3>${searchCardInfo.name}</h3>
+                <p>${searchCardInfo.description}</p>
+            <div>
+                <p><span>${searchCardInfo.price}</span> $</p>
+                <hr>
+                <div class="card__rating">
+                    <i class="fa-solid fa-star"></i>
+                    <span>${searchCardInfo.rating}</span>
+                </div>
+                </div>
+                <button class="buttons-add-to-cart">В корзину</button>
+            </div>
+        </div>
+    `
+        searchList.appendChild(searchCardDiv)
+    }
+    buttonsAddToCartClick();
 }
 
 
 
-
-
-
-
-
-
-
-
-
 let buttonThemeIcon;
-
 function getTheme() {
     console.log(buttonThemeToggle)
     if (darkThemeMq.matches) {
@@ -268,6 +271,7 @@ buttonThemeToggle.onclick = function () {
     hamburger.classList.remove('hamburger_active');
     navButtons.classList.remove('navButtons_active');
     navLogo.classList.remove('navLogo_active');
+    body.classList.remove('scroll-none');
 
     checkClassAvailability();
 }
@@ -317,13 +321,13 @@ for (let i = 0; i < 4; i++) {
     categoriesButtonsAll[i].onclick = function () {
         document.querySelector('.categories__buttons_active').classList.remove('categories__buttons_active');
         categoriesButtonsAll[i].classList.add('categories__buttons_active');
-        if (i == 3) {      /**Сравниваем значение переменной i с числом 3, и если оно равно 3, показываем карточки с мужскими кроссовками.**/
+        if (i == 3) {
             categoriesCardRender('man')
         }
-        if (i == 2) {         /**Сравниваем значение переменной i с числом 2, и если оно равно 2, показываем карточки с женскими кроссовками.**/
+        if (i == 2) {
             categoriesCardRender('woman')
         }
-        if (i == 1) {             /**Сравниваем значение переменной i с числом 1, и если оно равно 1, показываем карточки с бутсами.**/
+        if (i == 1) {
             categoriesCardRender('boots')
         }
         if (i == 0) {       /**Сравниваем значение переменной i с числом 0, и если оно равно 0, показываем все карточки.**/
@@ -334,7 +338,6 @@ for (let i = 0; i < 4; i++) {
 
 
 
-
 const categoriesCardStore = [                    /**Создаем базу данных, куда попадают все данные карточек с кроссовками.**/
     {
         img: '1',
@@ -342,7 +345,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         price: '240',
         description: 'Баскетбольные кроссовки',
         rating: '4.9',
-        type: 'woman'
+        type: 'woman',
+        imgPath: 'categories'
     },
 
     {
@@ -351,7 +355,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         price: '180',
         description: 'Футбольные бутсы для игры на твердом грунте',
         rating: '4.2',
-        type: 'boots'
+        type: 'boots',
+        imgPath: 'categories'
     },
 
     {
@@ -360,7 +365,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         price: '240',
         description: 'Мужские универсальные кросовки',
         rating: '4.9',
-        type: 'man'
+        type: 'man',
+        imgPath: 'categories'
     },
 
     {
@@ -369,7 +375,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         price: '210',
         description: 'Баскетбольные кроссовки',
         rating: '4.9',
-        type: 'woman'
+        type: 'woman',
+        imgPath: 'categories'
     },
 
     {
@@ -378,7 +385,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         price: '160',
         description: 'Низкие бутсы для искусственного покрытия',
         rating: '4.0',
-        type: 'boots'
+        type: 'boots',
+        imgPath: 'categories'
     },
 
     {
@@ -388,6 +396,7 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Низкие бутсы для мягкого грунта',
         rating: '4.9',
         type: 'boots',
+        imgPath: 'categories'
     },
 
     {
@@ -396,7 +405,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         price: '230',
         description: 'Баскетбольные кроссовки',
         rating: '4.9',
-        type: 'man'
+        type: 'man',
+        imgPath: 'categories'
     },
 
     {
@@ -405,7 +415,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         price: '210',
         description: 'Футбольные бутсы для игры на твердом грунте',
         rating: '4.9',
-        type: 'boots'
+        type: 'boots',
+        imgPath: 'categories'
     },
 
     {
@@ -414,7 +425,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         price: '410',
         description: 'Баскетбольные кроссовки',
         rating: '4.9',
-        type: 'man'
+        type: 'man',
+        imgPath: 'categories'
     },
 
     {
@@ -423,7 +435,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         price: '290',
         description: 'Водонепроницаемые  женские кроссовки для бега',
         rating: '4.9',
-        type: 'woman'
+        type: 'woman',
+        imgPath: 'categories'
     },
 
     {
@@ -433,6 +446,7 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Женская обувь для шоссейных гонок',
         rating: '4.9',
         type: 'woman',
+        imgPath: 'categories'
     },
 
     {
@@ -441,7 +455,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         price: '210',
         description: 'Мужские универсальные кросовки',
         rating: '4.9',
-        type: 'man'
+        type: 'man',
+        imgPath: 'categories'
     }
 ]
 
@@ -482,7 +497,7 @@ function categoriesCardRender(type) {       /**Создается функция
                         </div>
                     </div>
                 </div>
-                <button>Купить сейчас</button>
+                <button class="buttons-add-to-cart">В корзину</button>
             </div>
             `
             categoriesListDiv.appendChild(categoriesCardDiv)
@@ -494,9 +509,9 @@ function categoriesCardRender(type) {       /**Создается функция
                 const categoriesCardDiv = document.createElement('div');
                 categoriesCardDiv.className = 'categories__card card';
 
-                categoriesCardDiv.innerHTML =  /**Открываем html в джава скрипт**/`       
+                categoriesCardDiv.innerHTML = `       
             <div class="card__photo">
-                <img src="./img/categories/${cardInfo.img  /**Взять с переменной, куда попало значение i из базы данных, картинку и вставить в карточку.**/}.png" alt="">
+                <img src="./img/categories/${cardInfo.img}.png" alt="">
                 <svg class="heart" width="22" height="20" viewBox="0 0 22 20" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.5 6.76466V6.96606C0.5 8.78643 1.21424 10.53 2.48915 11.7571C2.48917 11.7571 2.48919 11.7571 2.48922 11.7571L9.55383 18.559C9.94943 18.9625 10.4854 19.107 11 19.107C11.4826 19.107 12.0152 18.9587 12.4071 18.559L19.4717 11.7571C19.4717 11.7571 19.4718 11.7571 19.4718 11.7571C20.741 10.5355 21.5 8.79447 21.5 6.96606V6.76466C21.5 3.71422 19.3448 1.07926 16.3981 0.592522C14.4709 0.240837 12.4703 0.905049 11.0708 2.34827L10.9847 2.43698L10.8825 2.34031C9.48323 0.902607 7.48646 0.241484 5.5628 0.592522C2.6113 1.08006 0.5 3.71936 0.5 6.76466Z" stroke="#FEFFF7"/>
                 </svg>
@@ -504,14 +519,14 @@ function categoriesCardRender(type) {       /**Создается функция
             <div class="card__info">
                 <div class="card__description">
                     <div class="card__name">
-                        <h3>${cardInfo.name /**Взять с переменной, куда попало значение i из базы данных, имя карты и вставить в карту.**/}</h3>
+                        <h3>${cardInfo.name}</h3>
                         <p><span>${cardInfo.price}</span> $</p>
                     </div>
                     <p>
-                        ${cardInfo.description /**Взять с переменной, куда попало значение i из базы данных, описание и вставить в карточку.**/}
+                        ${cardInfo.description}
                     </p>
                     <div class="card__rating">
-                        <span>${cardInfo.rating /**Взять с переменной, куда попало значение i из базы данных, значение рейтинга и вставить в карточку.**/}</span> 
+                        <span>${cardInfo.rating}</span> 
                         <hr>
                         <div>
                             <i class="fa-solid fa-star"></i>
@@ -522,7 +537,7 @@ function categoriesCardRender(type) {       /**Создается функция
                         </div>
                     </div>
                 </div>
-                <button>Купить сейчас</button>
+                <button class="buttons-add-to-cart">В корзину</button>
             </div>
             `
                 categoriesListDiv.appendChild(categoriesCardDiv)   // Сгенирированную карточку добавить в див категориес лист
@@ -536,8 +551,10 @@ function categoriesCardRender(type) {       /**Создается функция
                 categoriesHeart.classList.toggle('heart-active');
             });
         });
+        buttonsAddToCartClick();
     }
     categoriesHeartClick();
+    buttonsAddToCartClick();
 }
 
 categoriesCardRender('all'); /**При обновлении страницы показывает все карточки**/
@@ -546,34 +563,42 @@ categoriesCardRender('all'); /**При обновлении страницы п�
 const newModelsCardStore = [
     {
         bgColorNewModels: '#B7A997',
-        nameNewModels: 'Jumpman',
-        descriptionNewModels: 'Мужские беговые кросовки',
-        ratingNewModels: '4.9',
-        imgNewModels: '1'
+        imgPath: 'new-models',
+        name: 'Jumpman',
+        img: '1',
+        description: 'Мужские беговые кросовки',
+        rating: '4.9',
+        price: '170'
     },
 
     {
         bgColorNewModels: '#D6B895',
-        nameNewModels: 'AIR-MAX',
-        descriptionNewModels: 'Женские городские кросовки',
-        ratingNewModels: '4.9',
-        imgNewModels: '2'
+        imgPath: 'new-models',
+        name: 'AIR-MAX',
+        img: '2',
+        description: 'Женские городские кросовки',
+        rating: '4.9',
+        price: '260'
     },
 
     {
         bgColorNewModels: '#7DB3B9',
-        nameNewModels: 'CityMax',
-        descriptionNewModels: 'Мужские городские кросовки',
-        ratingNewModels: '3.6',
-        imgNewModels: '3'
+        imgPath: 'new-models',
+        name: 'CityMax',
+        img: '3',
+        description: 'Мужские городские кросовки',
+        rating: '3.6',
+        price: '160'
     },
 
     {
         bgColorNewModels: '#DD7916',
-        nameNewModels: 'K-Swiss',
-        descriptionNewModels: 'Мужские городские кросовки',
-        ratingNewModels: '4.4',
-        imgNewModels: '4'
+        imgPath: 'new-models',
+        name: 'K-Swiss',
+        img: '4',
+        description: 'Мужские городские кросовки',
+        rating: '4.4',
+        price: '230'
     }
 ]
 
@@ -590,21 +615,22 @@ function newModelsCardRender() {
                     d="M0.5 6.76466V6.96606C0.5 8.78643 1.21424 10.53 2.48915 11.7571C2.48917 11.7571 2.48919 11.7571 2.48922 11.7571L9.55383 18.559C9.94943 18.9625 10.4854 19.107 11 19.107C11.4826 19.107 12.0152 18.9587 12.4071 18.559L19.4717 11.7571C19.4717 11.7571 19.4718 11.7571 19.4718 11.7571C20.741 10.5355 21.5 8.79447 21.5 6.96606V6.76466C21.5 3.71422 19.3448 1.07926 16.3981 0.592522C14.4709 0.240837 12.4703 0.905049 11.0708 2.34827L10.9847 2.43698L10.8825 2.34031C9.48323 0.902607 7.48646 0.241484 5.5628 0.592522C2.6113 1.08006 0.5 3.71936 0.5 6.76466Z"
                     stroke="#FEFFF7" />
             </svg>
-            <img src="./img/new-models/${cardInfo.imgNewModels}.png" alt="">
+            <img src="./img/new-models/${cardInfo.img}.png" alt="">
             <div class="new-models-card__info">
-                <h3>${cardInfo.nameNewModels}</h3>
-                <p>${cardInfo.descriptionNewModels}</p>
+                <h3>${cardInfo.name}</h3>
+                <p>${cardInfo.description}</p>
                 <div class="new-models-card__rating">
-                    <span>${cardInfo.ratingNewModels}</span>
+                    <span>${cardInfo.rating}</span>
                     <hr>
                     <i class="fa-solid fa-star"></i>
                 </div>
             </div>
-            <button style="color: ${cardInfo.bgColorNewModels}">В корзину</button>
+            <button class="buttons-add-to-cart" style="color: ${cardInfo.bgColorNewModels}">В корзину</button>
         </div>
         `
         newModelsListDiv.appendChild(cardDiv)
     }
+    buttonsAddToCartClick();
 }
 
 newModelsCardRender()
@@ -623,6 +649,49 @@ heartsClick();
 
 
 
+function buttonsAddToCartClick() {
+    const buttonsAddToCart = document.querySelectorAll('.buttons-add-to-cart');
+    for (let i = 0; i < buttonsAddToCart.length; i++) {
+        buttonsAddToCart[i].onclick = function () {
+            console.log(buttonsAddToCart[i]);
+            buttonsAddToCart[i].classList.toggle('buttons-add-to-cart_active');
+            if (buttonsAddToCart[i].className == 'buttons-add-to-cart') {
+                buttonsAddToCart[i].innerText = 'В корзину'
+
+
+                // const cartList = document.createElement('div');
+                // cardInCart.innerHTML = `
+                // <div>
+                // <div>
+                    
+                // </div>
+                // <div>
+                //     <h3>ttttttttt</h3>
+                //     <p></p>
+                // <div>
+                //     <p><span></span> $</p>
+                //     <hr>
+                //     <div>
+                //         <i class="fa-solid fa-star"></i>
+                //         <span></span>
+                //     </div>
+                //     </div>
+                //     </div>
+                // </div>
+                // `
+
+
+            } else {
+                buttonsAddToCart[i].innerText = 'В корзине'
+            }
+        }
+    }
+}
+
+cartList = [
+
+]
 
 
 
+console.log('cartList:' + cartList);
