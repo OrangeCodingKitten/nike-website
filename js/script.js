@@ -649,6 +649,9 @@ heartsClick();
 
 
 
+
+
+
 function buttonsAddToCartClick() {
     const buttonsAddToCart = document.querySelectorAll('.buttons-add-to-cart');
     for (let i = 0; i < buttonsAddToCart.length; i++) {
@@ -659,26 +662,7 @@ function buttonsAddToCartClick() {
                 buttonsAddToCart[i].innerText = 'В корзину'
 
 
-                // const cartList = document.createElement('div');
-                // cardInCart.innerHTML = `
-                // <div>
-                // <div>
-                    
-                // </div>
-                // <div>
-                //     <h3>ttttttttt</h3>
-                //     <p></p>
-                // <div>
-                //     <p><span></span> $</p>
-                //     <hr>
-                //     <div>
-                //         <i class="fa-solid fa-star"></i>
-                //         <span></span>
-                //     </div>
-                //     </div>
-                //     </div>
-                // </div>
-                // `
+                
 
 
             } else {
@@ -688,10 +672,40 @@ function buttonsAddToCartClick() {
     }
 }
 
+
+
+
 cartList = [
 
 ]
 
 
+
+
+
+
+
+
+
+cartList = document.createElement('div');
+                cartList.innerHTML = `
+                <div>
+                <div>
+                    
+                </div>
+                <div>
+                    <h3>ttttttttt</h3>
+                    <p>ggggggggggggggggg</p>
+                <div>
+                    <p><span></span> $</p>
+                    <hr>
+                    <div>
+                        <i class="fa-solid fa-star"></i>
+                        <span></span>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                `
 
 console.log('cartList:' + cartList);
