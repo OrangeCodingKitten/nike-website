@@ -346,7 +346,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Баскетбольные кроссовки',
         rating: '4.9',
         type: 'woman',
-        imgPath: 'categories'
+        imgPath: 'categories',
+        state: 'В корзину'
     },
 
     {
@@ -356,7 +357,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Футбольные бутсы для игры на твердом грунте',
         rating: '4.2',
         type: 'boots',
-        imgPath: 'categories'
+        imgPath: 'categories',
+        state: 'В корзину'
     },
 
     {
@@ -366,7 +368,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Мужские универсальные кросовки',
         rating: '4.9',
         type: 'man',
-        imgPath: 'categories'
+        imgPath: 'categories',
+        state: 'В корзину'
     },
 
     {
@@ -376,7 +379,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Баскетбольные кроссовки',
         rating: '4.9',
         type: 'woman',
-        imgPath: 'categories'
+        imgPath: 'categories',
+        state: 'В корзину'
     },
 
     {
@@ -386,7 +390,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Низкие бутсы для искусственного покрытия',
         rating: '4.0',
         type: 'boots',
-        imgPath: 'categories'
+        imgPath: 'categories',
+        state: 'В корзину'
     },
 
     {
@@ -396,7 +401,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Низкие бутсы для мягкого грунта',
         rating: '4.9',
         type: 'boots',
-        imgPath: 'categories'
+        imgPath: 'categories',
+        state: 'В корзину'
     },
 
     {
@@ -406,7 +412,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Баскетбольные кроссовки',
         rating: '4.9',
         type: 'man',
-        imgPath: 'categories'
+        imgPath: 'categories',
+        state: 'В корзину'
     },
 
     {
@@ -416,7 +423,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Футбольные бутсы для игры на твердом грунте',
         rating: '4.9',
         type: 'boots',
-        imgPath: 'categories'
+        imgPath: 'categories',
+        state: 'В корзину'
     },
 
     {
@@ -426,7 +434,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Баскетбольные кроссовки',
         rating: '4.9',
         type: 'man',
-        imgPath: 'categories'
+        imgPath: 'categories',
+        state: 'В корзину'
     },
 
     {
@@ -436,7 +445,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Водонепроницаемые  женские кроссовки для бега',
         rating: '4.9',
         type: 'woman',
-        imgPath: 'categories'
+        imgPath: 'categories',
+        state: 'В корзину'
     },
 
     {
@@ -446,7 +456,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Женская обувь для шоссейных гонок',
         rating: '4.9',
         type: 'woman',
-        imgPath: 'categories'
+        imgPath: 'categories',
+        state: 'В корзину'
     },
 
     {
@@ -456,7 +467,8 @@ const categoriesCardStore = [                    /**Создаем базу да
         description: 'Мужские универсальные кросовки',
         rating: '4.9',
         type: 'man',
-        imgPath: 'categories'
+        imgPath: 'categories',
+        state: 'В корзину'
     }
 ]
 
@@ -497,7 +509,7 @@ function categoriesCardRender(type) {       /**Создается функция
                         </div>
                     </div>
                 </div>
-                <button class="buttons-add-to-cart">В корзину</button>
+                <button class="buttons-add-to-cart">${cardInfo.state}</button>
             </div>
             `
             categoriesListDiv.appendChild(categoriesCardDiv)
@@ -537,7 +549,7 @@ function categoriesCardRender(type) {       /**Создается функция
                         </div>
                     </div>
                 </div>
-                <button class="buttons-add-to-cart">В корзину</button>
+                <button class="buttons-add-to-cart">${cardInfo.state}</button>
             </div>
             `
                 categoriesListDiv.appendChild(categoriesCardDiv)   // Сгенирированную карточку добавить в див категориес лист
@@ -656,18 +668,20 @@ function buttonsAddToCartClick() {
     const buttonsAddToCart = document.querySelectorAll('.buttons-add-to-cart');
     for (let i = 0; i < buttonsAddToCart.length; i++) {
         buttonsAddToCart[i].onclick = function () {
-            console.log(buttonsAddToCart[i]);
             buttonsAddToCart[i].classList.toggle('buttons-add-to-cart_active');
             if (buttonsAddToCart[i].className == 'buttons-add-to-cart') {
-                buttonsAddToCart[i].innerText = 'В корзину'
-
-
-                
-
-
+                buttonsAddToCart[i].innerText = 'В корзину';
             } else {
-                buttonsAddToCart[i].innerText = 'В корзине'
+                buttonsAddToCart[i].innerText = 'Уже в корзине';
             }
+            const cardName = buttonsAddToCart[i].parentNode.parentNode.querySelector('h3').innerText;
+            for (let j = 0; j < categoriesCardStore.length; j++) {
+                if (categoriesCardStore[j].name == cardName) {
+                    categoriesCardStore[j].state = buttonsAddToCart[i].innerText;
+                    return;
+                }
+            }   
+            
         }
     }
 }

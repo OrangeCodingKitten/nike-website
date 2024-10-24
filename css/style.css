@@ -51,6 +51,16 @@ body {
   }
 }
 
+@keyframes upDownImg {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-20px);
+  }
+}
+
 .search-div {
   width: 26%;
   background-color: var(--color6);
@@ -635,28 +645,9 @@ header {
 .header__photo {
   & img {
     max-width: 572px;
-
+    animation: upDownImg 2s ease-in-out infinite alternate
   }
 
-}
-
-.header__photo img {
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-  animation: hoverAnimation 2s ease-in-out infinite
-}
-
-@keyframes hoverAnimation {
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-20px);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
 }
 
 .header__stats {
@@ -750,25 +741,7 @@ header {
       & img {
         margin-top: -55px;
         margin-left: -105px;
-      }
-    }
-
-    .about-us__photo img {
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-      animation: hoverAnimation 2s ease-in-out infinite
-    }
-    
-    @keyframes hoverAnimation {
-      0% {
-        transform: translateY(0);
-      }
-    
-      50% {
-        transform: translateY(-20px);
-      }
-    
-      100% {
-        transform: translateY(0);
+        animation: upDownImg 2s ease-in-out infinite alternate-reverse
       }
     }
 
