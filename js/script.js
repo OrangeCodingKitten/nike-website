@@ -15,9 +15,10 @@ const searchDiv = document.querySelector('.search-div');
 const searchButtonClose = document.querySelector('.search-button-close');
 const searchInput = document.getElementById('searchInput');
 
-const cartDiv = document.querySelector('.cart-div');
-const cartButtonClose = document.querySelector('.cart-button-close');
-const cartButtonOpen = document.querySelector('#cartButtonOpen');
+const basketDiv = document.querySelector('.basket-div');
+const basketButtonClose = document.querySelector('.basket-button-close');
+const basketButtonOpen = document.querySelector('#basketButtonOpen');
+const basketListDiv = document.querySelector('.basket__list');
 
 const signupDiv = document.querySelector('.signup-div');
 const buttonSignupOpen = document.getElementById('button-signup-open')
@@ -30,51 +31,107 @@ const buttonLogin = document.querySelector('.button-login');
 const buttonSignupLink = document.querySelector('.button-signup-link');
 const buttonSignup = document.querySelector('.button-signup');
 
+const favoritesLink = document.querySelector('.favorites-link');
+const basketLink = document.querySelector('.basket-link');
+const favoritesDiv = document.querySelector('.favorites-div');
+const favoritesButtonClose = document.querySelector('.favorites-button-close');
+const favoritesListDiv = document.querySelector('.favorites__list');
+
+const wraper = document.querySelector('.wraper');
+
+favoritesLink.onclick = function () {
+    wraper.classList.add('wraper_active');
+    body.classList.add('wraper_scroll-none');
+    basketDiv.classList.remove('basket-div_active');
+    favoritesDiv.classList.add('favorites-div_active');
+}
+
+basketLink.onclick = function () {
+    wraper.classList.add('wraper_active');
+    body.classList.add('wraper_scroll-none');
+    basketDiv.classList.add('basket-div_active');
+    favoritesDiv.classList.remove('favorites-div_active');
+}
+
+favoritesButtonClose.onclick = function () {
+    wraper.classList.remove('wraper_active');
+    body.classList.remove('wraper_scroll-none');
+    favoritesDiv.classList.remove('favorites-div_active');
+}
+
+
+
 searchButtonOpen.onclick = function () {
     searchDiv.classList.toggle('div_active');
     signupDiv.classList.remove('div_active');
     loginDiv.classList.remove('div_active');
-    cartDiv.classList.remove('cart-div_active');
+    basketDiv.classList.remove('basket-div_active');
+
+    wraper.classList.add('wraper_active');
+    body.classList.add('wraper_scroll-none');
 }
 
 searchButtonClose.onclick = function () {
     searchDiv.classList.remove('div_active');
+    wraper.classList.remove('wraper_active');
+    body.classList.remove('wraper_scroll-none');
 }
 
-cartButtonOpen.onclick = function () {
-    cartDiv.classList.toggle('cart-div_active');
+basketButtonOpen.onclick = function () {
+    basketDiv.classList.toggle('basket-div_active');
     signupDiv.classList.remove('div_active');
     searchDiv.classList.remove('div_active');
     loginDiv.classList.remove('div_active');
+
+    wraper.classList.add('wraper_active');
+    body.classList.add('wraper_scroll-none');
 }
 
-cartButtonClose.onclick = function () {
-    cartDiv.classList.remove('cart-div_active');
+basketButtonClose.onclick = function () {
+    basketDiv.classList.remove('basket-div_active');
+
+    wraper.classList.remove('wraper_active');
+    body.classList.remove('wraper_scroll-none');
 }
 
 buttonSignupOpen.onclick = function () {
     signupDiv.classList.toggle('div_active');
     searchDiv.classList.remove('div_active');
     loginDiv.classList.remove('div_active');
-    cartDiv.classList.remove('cart-div_active');
+    basketDiv.classList.remove('basket-div_active');
+
+    wraper.classList.add('wraper_active');
+    body.classList.add('wraper_scroll-none');
 }
 
 signupButtonClose.onclick = function () {
     signupDiv.classList.remove('div_active');
+
+    wraper.classList.remove('wraper_active');
+    body.classList.remove('wraper_scroll-none');
 }
 
 buttonLoginLink.onclick = function () {
     loginDiv.classList.add('div_active');
     signupDiv.classList.remove('div_active');
+
+    wraper.classList.add('wraper_active');
+    body.classList.add('wraper_scroll-none');
 }
 
 loginButtonClose.onclick = function () {
     loginDiv.classList.remove('div_active');
+
+    wraper.classList.remove('wraper_active');
+    body.classList.remove('wraper_scroll-none');
 }
 
 buttonSignupLink.onclick = function () {
     loginDiv.classList.remove('div_active');
     signupDiv.classList.add('div_active');
+
+    wraper.classList.add('wraper_active');
+    body.classList.add('wraper_scroll-none');
 }
 
 
@@ -224,13 +281,13 @@ function searchCardRender() {
                     <span>${searchCardInfo.rating}</span>
                 </div>
                 </div>
-                <button class="buttons-add-to-cart">В корзину</button>
+                <button class="${searchCardInfo.stateButton}">${searchCardInfo.textButton}</button>
             </div>
         </div>
     `
         searchList.appendChild(searchCardDiv)
     }
-    buttonsAddToCartClick();
+    buttonsAddTobasketClick();
 }
 
 
@@ -347,7 +404,9 @@ const categoriesCardStore = [                    /**Создаем базу да
         rating: '4.9',
         type: 'woman',
         imgPath: 'categories',
-        state: 'В корзину'
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -358,7 +417,9 @@ const categoriesCardStore = [                    /**Создаем базу да
         rating: '4.2',
         type: 'boots',
         imgPath: 'categories',
-        state: 'В корзину'
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -369,7 +430,9 @@ const categoriesCardStore = [                    /**Создаем базу да
         rating: '4.9',
         type: 'man',
         imgPath: 'categories',
-        state: 'В корзину'
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -380,7 +443,9 @@ const categoriesCardStore = [                    /**Создаем базу да
         rating: '4.9',
         type: 'woman',
         imgPath: 'categories',
-        state: 'В корзину'
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -391,7 +456,9 @@ const categoriesCardStore = [                    /**Создаем базу да
         rating: '4.0',
         type: 'boots',
         imgPath: 'categories',
-        state: 'В корзину'
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -402,7 +469,9 @@ const categoriesCardStore = [                    /**Создаем базу да
         rating: '4.9',
         type: 'boots',
         imgPath: 'categories',
-        state: 'В корзину'
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -413,7 +482,9 @@ const categoriesCardStore = [                    /**Создаем базу да
         rating: '4.9',
         type: 'man',
         imgPath: 'categories',
-        state: 'В корзину'
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -424,7 +495,9 @@ const categoriesCardStore = [                    /**Создаем базу да
         rating: '4.9',
         type: 'boots',
         imgPath: 'categories',
-        state: 'В корзину'
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -435,7 +508,9 @@ const categoriesCardStore = [                    /**Создаем базу да
         rating: '4.9',
         type: 'man',
         imgPath: 'categories',
-        state: 'В корзину'
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -446,7 +521,9 @@ const categoriesCardStore = [                    /**Создаем базу да
         rating: '4.9',
         type: 'woman',
         imgPath: 'categories',
-        state: 'В корзину'
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -457,7 +534,9 @@ const categoriesCardStore = [                    /**Создаем базу да
         rating: '4.9',
         type: 'woman',
         imgPath: 'categories',
-        state: 'В корзину'
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -468,7 +547,9 @@ const categoriesCardStore = [                    /**Создаем базу да
         rating: '4.9',
         type: 'man',
         imgPath: 'categories',
-        state: 'В корзину'
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     }
 ]
 
@@ -479,7 +560,7 @@ function categoriesCardRender(type) {       /**Создается функция
         for (let i = 0; i < categoriesCardStore.length; i++) {
             const cardInfo = categoriesCardStore[i]
             const categoriesCardDiv = document.createElement('div');
-            categoriesCardDiv.className = 'categories__card card';
+            categoriesCardDiv.className = 'categories__card card'; 
 
             categoriesCardDiv.innerHTML = `
             <div class="card__photo">
@@ -509,7 +590,7 @@ function categoriesCardRender(type) {       /**Создается функция
                         </div>
                     </div>
                 </div>
-                <button class="buttons-add-to-cart">${cardInfo.state}</button>
+                <button class="${cardInfo.stateButton}">${cardInfo.textButton}</button>
             </div>
             `
             categoriesListDiv.appendChild(categoriesCardDiv)
@@ -549,7 +630,7 @@ function categoriesCardRender(type) {       /**Создается функция
                         </div>
                     </div>
                 </div>
-                <button class="buttons-add-to-cart">${cardInfo.state}</button>
+                <button class="${cardInfo.stateButton}">${cardInfo.textButton}</button>
             </div>
             `
                 categoriesListDiv.appendChild(categoriesCardDiv)   // Сгенирированную карточку добавить в див категориес лист
@@ -563,10 +644,10 @@ function categoriesCardRender(type) {       /**Создается функция
                 categoriesHeart.classList.toggle('heart-active');
             });
         });
-        buttonsAddToCartClick();
+        buttonsAddTobasketClick();
     }
     categoriesHeartClick();
-    buttonsAddToCartClick();
+    buttonsAddTobasketClick();
 }
 
 categoriesCardRender('all'); /**При обновлении страницы показывает все карточки**/
@@ -580,7 +661,10 @@ const newModelsCardStore = [
         img: '1',
         description: 'Мужские беговые кросовки',
         rating: '4.9',
-        price: '170'
+        price: '170',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -590,7 +674,10 @@ const newModelsCardStore = [
         img: '2',
         description: 'Женские городские кросовки',
         rating: '4.9',
-        price: '260'
+        price: '260',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -600,7 +687,10 @@ const newModelsCardStore = [
         img: '3',
         description: 'Мужские городские кросовки',
         rating: '3.6',
-        price: '160'
+        price: '160',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     },
 
     {
@@ -610,7 +700,10 @@ const newModelsCardStore = [
         img: '4',
         description: 'Мужские городские кросовки',
         rating: '4.4',
-        price: '230'
+        price: '230',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
     }
 ]
 
@@ -637,23 +730,59 @@ function newModelsCardRender() {
                     <i class="fa-solid fa-star"></i>
                 </div>
             </div>
-            <button class="buttons-add-to-cart" style="color: ${cardInfo.bgColorNewModels}">В корзину</button>
+            <button class="buttons-add-to-basket" style="color: ${cardInfo.bgColorNewModels}">В корзину</button>
         </div>
         `
+        buttonsAddTobasketClick();
+
         newModelsListDiv.appendChild(cardDiv)
     }
-    buttonsAddToCartClick();
 }
 
 newModelsCardRender()
+
+
+
+
+
+heartsList = [];
+
+function heartsToggleCard(heart, cardName, item) {
+    if (heart.className.baseVal === 'heart') {
+        heartsList = heartsList.filter(favorites => favorites.name !== cardName);
+    } else {
+        heartsList.push(item);
+    }
+    heartsListRender();
+}
+
+
 function heartsClick() {
-    let hearts = document.querySelectorAll('.heart');
-    console.log(hearts);
-    hearts.forEach(heart => {
-        heart.addEventListener('click', function () {     //**addEventListener */
-            heart.classList.toggle('heart-active');
-        });
-    });
+    const hearts = document.querySelectorAll('.heart');
+    for (let i = 0; i < hearts.length; i++) {
+        hearts[i].onclick = function () {
+            hearts[i].classList.toggle('heart-active');
+ 
+            const favoritesCardName = hearts[i].parentNode.parentNode.querySelector('h3').innerText;
+
+            for (let j = 0; j < categoriesCardStore.length; j++) {
+                if (categoriesCardStore[j].name === favoritesCardName) {
+                    categoriesCardStore[j].stateHeart = hearts[i].className;
+                    heartsToggleCard(hearts[i], favoritesCardName, categoriesCardStore[j]);
+                    return;
+                }
+            }
+
+            for (let t = 0; t < newModelsCardStore.length; t++) {
+                if (newModelsCardStore[t].name === favoritesCardName) {
+                    newModelsCardStore[t].stateHeart = hearts[i].className;
+                    heartsToggleCard(hearts[i], favoritesCardName, newModelsCardStore[t]);
+                    return;
+                }
+            }
+            
+        }
+    }
 }
 heartsClick();
 
@@ -661,65 +790,119 @@ heartsClick();
 
 
 
-
-
-
-function buttonsAddToCartClick() {
-    const buttonsAddToCart = document.querySelectorAll('.buttons-add-to-cart');
-    for (let i = 0; i < buttonsAddToCart.length; i++) {
-        buttonsAddToCart[i].onclick = function () {
-            buttonsAddToCart[i].classList.toggle('buttons-add-to-cart_active');
-            if (buttonsAddToCart[i].className == 'buttons-add-to-cart') {
-                buttonsAddToCart[i].innerText = 'В корзину';
-            } else {
-                buttonsAddToCart[i].innerText = 'Уже в корзине';
-            }
-            const cardName = buttonsAddToCart[i].parentNode.parentNode.querySelector('h3').innerText;
-            for (let j = 0; j < categoriesCardStore.length; j++) {
-                if (categoriesCardStore[j].name == cardName) {
-                    categoriesCardStore[j].state = buttonsAddToCart[i].innerText;
-                    return;
-                }
-            }   
-            
-        }
+function heartsListRender() {
+    favoritesListDiv.innerHTML = ``
+    for (let i = 0; i < heartsList.length; i++) {
+        const favoritesListCard = document.createElement('div');
+        favoritesListCard.className = 'favorites-list-card';
+        favoritesListCard.innerHTML = `
+            <div class="favorites-card__photo">
+                    <img src="./img/${heartsList[i].imgPath}/${heartsList[i].img}.png" alt="">
+                </div>
+                <div class="favorites-list-card__info">
+                    <h3>${heartsList[i].name}</h3>
+                    <p>${heartsList[i].description}</p>
+                    <div>
+                        <p><span>${heartsList[i].price}</span> $</p>
+                        <hr>
+                        <div class="card-list__rating">
+                            <i class="fa-solid fa-star"></i>
+                            <span>${heartsList[i].rating}</span>
+                        </div>
+                    </div>
+                    <button class="${heartsList[i].stateButton}">${heartsList[i].textButton}</button>
+                </div>
+        `
+        favoritesListDiv.appendChild(favoritesListCard);
     }
 }
 
 
 
 
-cartList = [
+function basketToggleCard(button, cardName, item) {
+    if (button.className === 'buttons-add-to-basket') {
+        basketList = basketList.filter(basket => basket.name !== cardName);
+    } else {
+        basketList.push(item);
+    }
+    basketListRender();
+}
+
+function buttonsAddTobasketClick() {
+    const buttonsAddTobasket = document.querySelectorAll('.buttons-add-to-basket');
+    for (let i = 0; i < buttonsAddTobasket.length; i++) {
+        buttonsAddTobasket[i].onclick = function () {
+            buttonsAddTobasket[i].classList.toggle('buttons_active');
+
+            if (buttonsAddTobasket[i].className === 'buttons-add-to-basket') {
+                buttonsAddTobasket[i].innerText = 'В корзину';
+            } else {
+                buttonsAddTobasket[i].innerText = 'Уже в корзине';
+            }
+
+            const cardName = buttonsAddTobasket[i].parentNode.parentNode.querySelector('h3').innerText;
+
+            // Обновляем `categoriesCardStore`
+            for (let j = 0; j < categoriesCardStore.length; j++) {
+                if (categoriesCardStore[j].name === cardName) {
+                    categoriesCardStore[j].stateButton = buttonsAddTobasket[i].className;
+                    categoriesCardStore[j].textButton = buttonsAddTobasket[i].innerText;
+
+                    // Вызываем функцию с правильным элементом
+                    basketToggleCard(buttonsAddTobasket[i], cardName, categoriesCardStore[j]);
+                    return;
+                }
+            }
+
+            // Обновляем `newModelsCardStore`
+            for (let t = 0; t < newModelsCardStore.length; t++) {
+                if (newModelsCardStore[t].name === cardName) {
+                    newModelsCardStore[t].stateButton = buttonsAddTobasket[i].className;
+                    newModelsCardStore[t].textButton = buttonsAddTobasket[i].innerText;
+                    
+                    // Вызываем функцию с правильным элементом
+                    basketToggleCard(buttonsAddTobasket[i], cardName, newModelsCardStore[t]);
+                    return;
+                }
+            }
+        };
+    }
+}
+
+
+
+
+basketList = [
 
 ]
 
 
 
 
-
-
-
-
-
-cartList = document.createElement('div');
-                cartList.innerHTML = `
-                <div>
-                <div>
-                    
+function basketListRender() {
+    basketListDiv.innerHTML = ``
+    for (let i = 0; i < basketList.length; i++) {
+        const basketListCard = document.createElement('div');
+        basketListCard.className = 'basket-list-card';
+        basketListCard.innerHTML = `
+                <div class="basket-card__photo">
+                    <img src="./img/${basketList[i].imgPath}/${basketList[i].img}.png" alt="">
                 </div>
-                <div>
-                    <h3>ttttttttt</h3>
-                    <p>ggggggggggggggggg</p>
-                <div>
-                    <p><span></span> $</p>
-                    <hr>
+                <div class="basket-list-card__info">
+                    <h3>${basketList[i].name}</h3>
+                    <p>${basketList[i].description}</p>
                     <div>
-                        <i class="fa-solid fa-star"></i>
-                        <span></span>
+                        <p><span>${basketList[i].price}</span> $</p>
+                        <hr>
+                        <div class="card-list__rating">
+                            <i class="fa-solid fa-star"></i>
+                            <span>${basketList[i].rating}</span>
+                        </div>
                     </div>
-                    </div>
-                    </div>
+                    <button class="${basketList[i].stateButton}">${basketList[i].textButton}</button>
                 </div>
-                `
-
-console.log('cartList:' + cartList);
+        `
+        basketListDiv.appendChild(basketListCard);
+    }
+}

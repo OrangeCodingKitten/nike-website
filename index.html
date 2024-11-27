@@ -16,7 +16,13 @@
 </head>
 
 <body>
+  
+
   <nav class="nav">
+    <div class="wraper">
+
+    </div>
+
     <div class="container">
       <div class="nav__elements">
         <a class="nav__logo" href="#header">
@@ -32,6 +38,7 @@
           <a href="#new-models">Новые модели</a>
         </div>
 
+        
 
         <div class="search-div">
           <button class="search-button-close button-close_styles">
@@ -44,14 +51,26 @@
           </div>
         </div>
 
-        <div class="cart-div">
-          <button class="cart-button-close button-close_styles">
+        <div class="basket-div">
+          <button class="basket-button-close button-close_styles">
             <i class="fa-solid fa-xmark"></i>
           </button>
           <h3>Корзина</h3>
-          <div class="cart__list">
+          <div class="basket__list">
             
           </div>
+          <button class="favorites-link">Перейти в избранные</button>
+        </div>
+
+        <div class="favorites-div">
+          <button class="favorites-button-close button-close_styles">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h3>Избранные</h3>
+          <div class="favorites__list">
+            
+          </div>
+          <button class="basket-link">Вернуться в корзину</button>
         </div>
 
         <div class="signup-div">
@@ -105,7 +124,7 @@
           <button href="">
             <i id="search-button-open" class="fa-solid fa-magnifying-glass"></i>
           </button>
-          <button href=""><i id="cartButtonOpen" class="fa-solid fa-cart-shopping"></i></button>
+          <button href=""><i id="basketButtonOpen" class="fa-solid fa-basket-shopping"></i></button>
           <button href="">
             <i id="button-signup-open" class="fa-solid fa-circle-user nav__icon_user"></i>
           </button>

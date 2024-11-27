@@ -61,6 +61,26 @@ body {
   }
 }
 
+.wraper {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #fefff6;
+  z-index: 11;
+  transition: 0.3s;
+}
+
+.wraper_active {
+  opacity: 0.6;
+  visibility: visible;
+}
+
+.wraper_scroll-none {
+  overflow-y: hidden;
+}
+
 .search-div {
   width: 26%;
   background-color: var(--color6);
@@ -78,6 +98,7 @@ body {
   flex-direction: column;
   gap: 14px;
   text-align: center;
+  z-index: 12;
 
   & #searchInput {
     border: none;
@@ -193,14 +214,15 @@ body {
           border-radius: 40px;
           border: none;
           transition: 0.5s;
+          background-color: var(--color1);
+          color: var(--color3);
+          border: 1px var(--color3) solid;
+          cursor: pointer;
+        }
+
+        & .buttons_active {
           background-color: var(--color3);
           color: var(--color1);
-          border: 1px var(--color3) solid;
-
-          &:hover {
-            background-color: var(--color1);
-            color: var(--color3);
-          }
         }
       }
     }
@@ -211,8 +233,9 @@ body {
   }
 }
 
-.cart-div {
-  width: 26%;
+.basket-div {
+  width: 90%;
+  max-width: 600px;
   background-color: var(--color6);
   border-radius: 16px;
   position: fixed;
@@ -228,13 +251,116 @@ body {
   flex-direction: column;
   gap: 14px;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 12;
 
-  & .cart__list {
+  & .basket__list {
     width: 100%;
     height: 300px;
     border-radius: 16px;
     background-color: var(--color1);
     overflow-y: scroll;
+
+    & .basket-list-card {
+      display: flex;
+      gap: 10%;
+      padding: 30px;
+
+      & .basket-card__photo {
+        width: 50%;
+        max-width: 200px;
+        background-color: var(--color5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        flex-shrink: 0;
+
+        & img {
+          width: 90%;
+        }
+      }
+
+      & .basket-list-card__info {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: start;
+
+        & h3 {
+          font-size: 20px;
+          font-weight: 700;
+        }
+
+        & p {
+          font-size: 16px;
+          font-weight: 400;
+          text-align: left;
+        }
+
+        & div {
+          display: flex;
+          gap: 10px;
+
+          & p {
+            font-size: 20px;
+            font-weight: 700;
+
+            & span {
+              font-size: 20px;
+              font-weight: 700;
+            }
+          }
+
+          & hr {
+            background-color: var(--color2);
+            border: none;
+            width: 1px;
+            height: 16px;
+          }
+
+          & .card-list__rating {
+            display: flex;
+            gap: 4px;
+
+            & i {
+              font-size: 16px;
+              color: var(--color3);
+            }
+
+            & span {
+              font-size: 16px;
+              font-weight: 700;
+              color: var(--color5);
+            }
+          }
+        }
+
+        & button {
+          font-family: Comfortaa;
+          font-size: 16px;
+          font-weight: 700;
+          min-width: max-content;
+          width: 106px;
+          height: 34px;
+          padding: 5px 10px 5px 10px;
+          border-radius: 40px;
+          border: none;
+          transition: 0.5s;
+          background-color: var(--color1);
+          color: var(--color3);
+          border: 1px var(--color3) solid;
+          cursor: pointer;
+        }
+
+        & .buttons_active {
+          background-color: var(--color3);
+          color: var(--color1);
+        }
+      }
+    }
 
     &::-webkit-scrollbar-thumb {
       height: 8px;
@@ -246,9 +372,194 @@ body {
       background: transparent;
     }
   }
+
+  & .favorites-link {
+    border-radius: 30px;
+    border: none;
+    background-color: var(--color3);
+    color: var(--color1);
+    padding: 6px;
+    font-size: 16px;
+    max-width: max-content;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color1);
+      color: var(--color3);
+    }
+  }
 }
 
-.cart-div_active {
+.basket-div_active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.favorites-div {
+  width: 90%;
+  max-width: 600px;
+  background-color: var(--color6);
+  border-radius: 16px;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+  opacity: 0;
+  visibility: hidden;
+  padding: 36px;
+  transition: 0.3s;
+  box-shadow: 0px 0px 20px 0px var(--color4);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 12;
+
+  & h3 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  & .favorites__list {
+    width: 100%;
+    height: 300px;
+    border-radius: 16px;
+    background-color: var(--color1);
+    overflow-y: scroll;
+
+    & .favorites-list-card {
+      display: flex;
+      gap: 10%;
+      padding: 30px;
+
+      & .favorites-card__photo {
+        width: 50%;
+        max-width: 200px;
+        background-color: var(--color5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        flex-shrink: 0;
+
+        & img {
+          width: 90%;
+        }
+      }
+
+      & .favorites-list-card__info {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: start;
+
+        & h3 {
+          font-size: 20px;
+          font-weight: 700;
+        }
+
+        & p {
+          font-size: 16px;
+          font-weight: 400;
+          text-align: left;
+        }
+
+        & div {
+          display: flex;
+          gap: 10px;
+
+          & p {
+            font-size: 20px;
+            font-weight: 700;
+
+            & span {
+              font-size: 20px;
+              font-weight: 700;
+            }
+          }
+
+          & hr {
+            background-color: var(--color2);
+            border: none;
+            width: 1px;
+            height: 16px;
+          }
+
+          & .card-list__rating {
+            display: flex;
+            gap: 4px;
+
+            & i {
+              font-size: 16px;
+              color: var(--color3);
+            }
+
+            & span {
+              font-size: 16px;
+              font-weight: 700;
+              color: var(--color5);
+            }
+          }
+        }
+
+        & button {
+          font-family: Comfortaa;
+          font-size: 16px;
+          font-weight: 700;
+          min-width: max-content;
+          width: 106px;
+          height: 34px;
+          padding: 5px 10px 5px 10px;
+          border-radius: 40px;
+          border: none;
+          transition: 0.5s;
+          background-color: var(--color1);
+          color: var(--color3);
+          border: 1px var(--color3) solid;
+          cursor: pointer;
+        }
+
+        & .buttons_active {
+          background-color: var(--color3);
+          color: var(--color1);
+        }
+      }
+    }
+
+    &::-webkit-scrollbar-thumb {
+      height: 8px;
+      border-radius: 8px;
+      background-color: var(--color3);
+    }
+
+    &::-webkit-scrollbar {
+      background: transparent;
+    }
+  }
+
+  & .basket-link {
+    border-radius: 30px;
+    border: none;
+    background-color: var(--color3);
+    color: var(--color1);
+    padding: 6px;
+    font-size: 16px;
+    max-width: max-content;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color1);
+      color: var(--color3);
+    }
+  }
+}
+
+.favorites-div_active {
   opacity: 1;
   visibility: visible;
 }
@@ -269,6 +580,7 @@ body {
   gap: 36px;
   display: flex;
   flex-direction: column;
+  z-index: 12;
 
   & h3 {
     font-family: Montserrat;
@@ -320,6 +632,7 @@ body {
   gap: 36px;
   display: flex;
   flex-direction: column;
+  z-index: 12;
 
   & h3 {
     font-family: Montserrat;
@@ -349,15 +662,11 @@ body {
       color: black;
     }
 
-    & input:focus+.login-label {
+    & input:focus + .login-label {
       top: -20px;
     }
   }
 }
-
-
-
-
 
 .signup-button-clear {
   max-width: max-content;
@@ -378,10 +687,6 @@ body {
     }
   }
 }
-
-
-
-
 
 .button-styles-1 {
   background-color: var(--color3);
@@ -422,7 +727,6 @@ body {
   opacity: 1;
   visibility: visible;
 }
-
 
 .button-close_styles {
   color: white;
@@ -609,7 +913,7 @@ header {
       }
     }
 
-    &>p {
+    & > p {
       max-height: 457px;
       font-size: 16px;
       font-weight: 400;
@@ -645,9 +949,8 @@ header {
 .header__photo {
   & img {
     max-width: 572px;
-    animation: upDownImg 2s ease-in-out infinite alternate
+    animation: upDownImg 2s ease-in-out infinite alternate;
   }
-
 }
 
 .header__stats {
@@ -741,7 +1044,7 @@ header {
       & img {
         margin-top: -55px;
         margin-left: -105px;
-        animation: upDownImg 2s ease-in-out infinite alternate-reverse
+        animation: upDownImg 2s ease-in-out infinite alternate-reverse;
       }
     }
 
@@ -874,7 +1177,8 @@ header {
       background: transparent;
     }
 
-    & .categories__card {}
+    & .categories__card {
+    }
 
     & .card {
       width: 400px;
@@ -986,14 +1290,14 @@ header {
           font-weight: 700;
           color: var(--color3);
           font-family: Comfortaa;
-          transition: 0.5s;
+          transition: 0.3s;
           text-align: center;
+          cursor: pointer;
+        }
 
-          &:hover {
-            background-color: var(--color3);
-            color: var(--color1);
-            border: 1px var(--color1) solid;
-          }
+        & .buttons_active {
+          background-color: var(--color3);
+          color: var(--color1);
         }
       }
     }
@@ -1061,7 +1365,8 @@ header {
       visibility: hidden;
       transition: 0.5s;
 
-      &:hover {}
+      &:hover {
+      }
     }
 
     & .new-models-card__info {
@@ -1134,7 +1439,14 @@ header {
       bottom: 20px;
       left: 20px;
       transition: 0.5s;
-      border: 1px solid;
+      border: 2px solid var(--color1);
+      cursor: pointer;
+      
+    }
+
+    & .buttons_active {
+      background-color: transparent;
+      color: var(--color1);
     }
   }
 
@@ -1162,10 +1474,10 @@ header {
     & button {
       width: calc(100% - 40px);
 
-      &:hover {
+      /* &:hover {
         background-color: transparent;
         color: var(--color1) !important;
-      }
+      } */
     }
   }
 }
