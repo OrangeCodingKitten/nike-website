@@ -614,6 +614,17 @@ body {
       top: -20px;
     } */
   }
+
+  & .password-input-box {
+    & i {
+      position: absolute;
+      font-size: 20px;
+      right: 10px;
+      top: 6px;
+      cursor: pointer;
+      color: #313131;
+    }
+  }
 }
 
 .login-div {
@@ -666,6 +677,49 @@ body {
       top: -20px;
     }
   }
+
+  & .login-password-input-box {
+    & i {
+      position: absolute;
+      font-size: 20px;
+      right: 10px;
+      top: 6px;
+      cursor: pointer;
+      color: #313131;
+    }
+  }
+}
+
+.account-settings-div {
+  width: 450px;
+  background-color: var(--color6);
+  border-radius: 16px;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%);
+  opacity: 0;
+  visibility: hidden;
+  padding: 30px 40px;
+  transition: 0.3s;
+  box-shadow: 0px 0px 20px 0px var(--color4);
+  gap: 36px;
+  display: flex;
+  flex-direction: column;
+  z-index: 12;
+
+  & h3 {
+
+  }
+
+  & .button-log-out {
+    
+  }
+}
+
+.account-settings-div_active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .signup-button-clear {
@@ -835,8 +889,18 @@ body {
     }
   }
 
-  .nav__icon_user {
+  
+
+  .nav__button_user {
     font-size: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    & span {
+      font-size: 18px;
+    }
   }
 }
 
@@ -1446,7 +1510,7 @@ header {
 
     & .buttons_active {
       background-color: transparent;
-      color: var(--color1);
+      color: var(--color1) !important;
     }
   }
 

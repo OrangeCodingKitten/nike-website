@@ -89,13 +89,15 @@
             <input id="signup-email-input" class="plaseholder-move" type="email">
             <label class="signup-label" for="">эл. почта</label>
           </div>
-          <div>
-            <input id="signup-password-input" class="plaseholder-move" type="password">
-            <label class="signup-label" for="">придумайте пароль (мин. 8 символов)</label>
+          <div class="password-input-box">
+            <input id="signup-password-input" class="plaseholder-move signup-password-input-eyecon" type="password">
+            <label class="signup-label" for="">придумайте пароль</label>
+            <i class="fa-regular fa-eye-slash eyecon"></i>
           </div>
-          <div>
-            <input id="signup-password-repit-input" class="plaseholder-move" type="password">
+          <div class="password-input-box">
+            <input id="signup-password-repit-input" class="plaseholder-move signup-password-input-eyecon" type="password">
             <label class="signup-label" for="">подтвердите пароль</label>
+            <i class="fa-regular fa-eye-slash eyecon"></i>
           </div>
           <button class="button-signup button-styles-1">Зарегистрироваться</button>
           <button class="button-login-link button-styles-2">У меня есть аккаунт</button>
@@ -110,12 +112,21 @@
             <input id="login-email-input" class="plaseholder-move" type="email">
             <label class="login-label" for="">эл. почта</label>
           </div>
-          <div>
-            <input id="login-password-input" class="plaseholder-move" type="password">
+          <div class="login-password-input-box">
+            <input id="login-password-input" class="plaseholder-move login-password-input-eyecon" type="password">
             <label class="login-label" for="">пароль</label>
+            <i class="fa-regular fa-eye-slash eyecon-login"></i>
           </div>
           <button class="button-login button-styles-1">Войти</button>
           <button class="button-signup-link button-styles-2">у меня нет аккаунта</button>
+        </div>
+
+        <div class="account-settings-div">
+          <button class="account-settings-button-close button-close_styles">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h3>Ваш аккаунт</h3>
+          <button class="button-log-out">Выйти из аккаунта</button>
         </div>
 
 
@@ -125,8 +136,9 @@
             <i id="search-button-open" class="fa-solid fa-magnifying-glass"></i>
           </button>
           <button href=""><i id="basketButtonOpen" class="fa-solid fa-basket-shopping"></i></button>
-          <button href="">
-            <i id="button-signup-open" class="fa-solid fa-circle-user nav__icon_user"></i>
+          <button class="nav__button_user" href="">
+            <i id="button-signup-open" class="fa-solid fa-circle-user"></i>
+            <span class="name-user">Войти</span>
           </button>
         </div>
 

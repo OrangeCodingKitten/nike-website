@@ -31,6 +31,8 @@ const buttonLogin = document.querySelector('.button-login');
 const buttonSignupLink = document.querySelector('.button-signup-link');
 const buttonSignup = document.querySelector('.button-signup');
 
+const buttonLogOut = document.querySelector('.button-log-out');
+
 const favoritesLink = document.querySelector('.favorites-link');
 const basketLink = document.querySelector('.basket-link');
 const favoritesDiv = document.querySelector('.favorites-div');
@@ -38,6 +40,260 @@ const favoritesButtonClose = document.querySelector('.favorites-button-close');
 const favoritesListDiv = document.querySelector('.favorites__list');
 
 const wraper = document.querySelector('.wraper');
+
+const accountSettingsDiv = document.querySelector('.account-settings-div');
+const accountSettingsButtonClose = document.querySelector('.account-settings-button-close');
+
+const nameUserSpan = document.querySelector('.name-user');
+
+const eyecon = document.querySelectorAll('.eyecon');
+const signupPasswordInputEyecon = document.querySelectorAll('.signup-password-input-eyecon');
+for (let i = 0; i < eyecon.length; i++) {
+    eyecon[i].onclick = function () {
+        if(signupPasswordInputEyecon[i].type === 'password') {
+            signupPasswordInputEyecon[i].type = 'text'
+            eyecon[i].classList.add('fa-eye');
+            eyecon[i].classList.remove('fa-eye-slash');
+        } else {
+            signupPasswordInputEyecon[i].type = 'password'
+            eyecon[i].classList.remove('fa-eye');
+            eyecon[i].classList.add('fa-eye-slash');
+        }
+    }
+}
+
+const eyeconLogin = document.querySelector('.eyecon-login');
+const loginPasswordInputEyecon = document.querySelector('.login-password-input-eyecon');
+eyeconLogin.onclick = function () {
+    if (loginPasswordInputEyecon.type === 'password') {
+        loginPasswordInputEyecon.type = 'text'
+        eyeconLogin.classList.add('fa-eye');
+        eyeconLogin.classList.remove('fa-eye-slash');
+    } else {
+        loginPasswordInputEyecon.type = 'password'
+        eyeconLogin.classList.add('fa-eye-slash');
+        eyeconLogin.classList.remove('fa-eye');
+    }
+}
+
+
+let categoriesCardStoreBasic = [
+    {
+        img: '1',
+        name: 'Luka 1',
+        price: '240',
+        description: 'Баскетбольные кроссовки',
+        rating: '4.9',
+        type: 'woman',
+        imgPath: 'categories',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        img: '2',
+        name: 'Phantom GX Pro',
+        price: '180',
+        description: 'Футбольные бутсы для игры на твердом грунте',
+        rating: '4.2',
+        type: 'boots',
+        imgPath: 'categories',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        img: '3',
+        name: 'Nike Air Max Plus',
+        price: '240',
+        description: 'Мужские универсальные кросовки',
+        rating: '4.9',
+        type: 'man',
+        imgPath: 'categories',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        img: '4',
+        name: 'LeBron XXI ‘Freshwater’',
+        price: '210',
+        description: 'Баскетбольные кроссовки',
+        rating: '4.9',
+        type: 'woman',
+        imgPath: 'categories',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        img: '5',
+        name: 'Phantom GX Pro',
+        price: '160',
+        description: 'Низкие бутсы для искусственного покрытия',
+        rating: '4.0',
+        type: 'boots',
+        imgPath: 'categories',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        img: '6',
+        name: 'Phantom GX Academy',
+        price: '79',
+        description: 'Низкие бутсы для мягкого грунта',
+        rating: '4.9',
+        type: 'boots',
+        imgPath: 'categories',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        img: '7',
+        name: 'Luka 2 ‘Trick Shot’',
+        price: '230',
+        description: 'Баскетбольные кроссовки',
+        rating: '4.9',
+        type: 'man',
+        imgPath: 'categories',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        img: '8',
+        name: 'Mercurial Superfly',
+        price: '210',
+        description: 'Футбольные бутсы для игры на твердом грунте',
+        rating: '4.9',
+        type: 'boots',
+        imgPath: 'categories',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        img: '9',
+        name: 'Zion 2',
+        price: '410',
+        description: 'Баскетбольные кроссовки',
+        rating: '4.9',
+        type: 'man',
+        imgPath: 'categories',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        img: '10',
+        name: 'Pegasus Trail 4',
+        price: '290',
+        description: 'Водонепроницаемые  женские кроссовки для бега',
+        rating: '4.9',
+        type: 'woman',
+        imgPath: 'categories',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        img: '11',
+        name: 'Alphafly 3 Proto',
+        price: '210',
+        description: 'Женская обувь для шоссейных гонок',
+        rating: '4.9',
+        type: 'woman',
+        imgPath: 'categories',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        img: '12',
+        name: 'Nike Air Max 270',
+        price: '210',
+        description: 'Мужские универсальные кросовки',
+        rating: '4.9',
+        type: 'man',
+        imgPath: 'categories',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    }
+]
+
+let newModelsCardStoreBasic = [
+    {
+        bgColorNewModels: '#B7A997',
+        imgPath: 'new-models',
+        name: 'Jumpman',
+        img: '1',
+        description: 'Мужские беговые кросовки',
+        rating: '4.9',
+        price: '170',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        bgColorNewModels: '#D6B895',
+        imgPath: 'new-models',
+        name: 'AIR-MAX',
+        img: '2',
+        description: 'Женские городские кросовки',
+        rating: '4.9',
+        price: '260',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        bgColorNewModels: '#7DB3B9',
+        imgPath: 'new-models',
+        name: 'CityMax',
+        img: '3',
+        description: 'Мужские городские кросовки',
+        rating: '3.6',
+        price: '160',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    },
+
+    {
+        bgColorNewModels: '#DD7916',
+        imgPath: 'new-models',
+        name: 'K-Swiss',
+        img: '4',
+        description: 'Мужские городские кросовки',
+        rating: '4.4',
+        price: '230',
+        stateButton: 'buttons-add-to-basket',
+        textButton: 'В корзину',
+        stateHeart: 'heart'
+    }
+]
+
+let basketList = [
+
+]
+
+let accountStatus = false;
 
 favoritesLink.onclick = function () {
     wraper.classList.add('wraper_active');
@@ -78,13 +334,25 @@ searchButtonClose.onclick = function () {
 }
 
 basketButtonOpen.onclick = function () {
-    basketDiv.classList.toggle('basket-div_active');
-    signupDiv.classList.remove('div_active');
-    searchDiv.classList.remove('div_active');
-    loginDiv.classList.remove('div_active');
 
-    wraper.classList.add('wraper_active');
-    body.classList.add('wraper_scroll-none');
+    if (accountStatus === true) {
+        basketDiv.classList.toggle('basket-div_active');
+        signupDiv.classList.remove('div_active');
+        searchDiv.classList.remove('div_active');
+        loginDiv.classList.remove('div_active');
+
+        wraper.classList.add('wraper_active');
+        body.classList.add('wraper_scroll-none');
+    } else {
+        signupDiv.classList.toggle('div_active');
+        searchDiv.classList.remove('div_active');
+        loginDiv.classList.remove('div_active');
+        basketDiv.classList.remove('basket-div_active');
+
+        wraper.classList.add('wraper_active');
+        body.classList.add('wraper_scroll-none');
+    }
+
 }
 
 basketButtonClose.onclick = function () {
@@ -95,13 +363,25 @@ basketButtonClose.onclick = function () {
 }
 
 buttonSignupOpen.onclick = function () {
-    signupDiv.classList.toggle('div_active');
-    searchDiv.classList.remove('div_active');
-    loginDiv.classList.remove('div_active');
-    basketDiv.classList.remove('basket-div_active');
+    if (accountStatus === false) {
+        signupDiv.classList.toggle('div_active');
+        searchDiv.classList.remove('div_active');
+        loginDiv.classList.remove('div_active');
+        basketDiv.classList.remove('basket-div_active');
 
-    wraper.classList.add('wraper_active');
-    body.classList.add('wraper_scroll-none');
+        wraper.classList.add('wraper_active');
+        body.classList.add('wraper_scroll-none');
+    } else {
+        accountSettingsDiv.classList.toggle('account-settings-div_active');
+        wraper.classList.add('wraper_active');
+        body.classList.add('wraper_scroll-none');
+    }
+}
+
+accountSettingsButtonClose.onclick = function () {
+    accountSettingsDiv.classList.remove('account-settings-div_active');
+    wraper.classList.remove('wraper_active');
+    body.classList.remove('wraper_scroll-none');
 }
 
 signupButtonClose.onclick = function () {
@@ -178,6 +458,7 @@ for (let i = 0; i < plaseholderMoveInputs.length; i++) {
 
 
 
+
 buttonSignup.onclick = function () {
     if (signupNameInput.value != '') {
         if (signupEmailInput.value != '') {
@@ -185,12 +466,22 @@ buttonSignup.onclick = function () {
                 if (signupPasswordInput.value === signupPasswordRepitInput.value) {
                     const savedEmail = localStorage.getItem(signupEmailInput.value);
                     if (savedEmail == null) {
+                        const userInfo = {
+                            email: signupEmailInput.value,
+                            name: signupNameInput.value,
+                            password: signupPasswordInput.value
+                        }
                         alert('Вы успешно зарегистрировались')
-                        localStorage.setItem(signupEmailInput.value, signupPasswordInput.value);
+                        localStorage.setItem(signupEmailInput.value, JSON.stringify(userInfo));
                         signupNameInput.value = '';
                         signupEmailInput.value = '';
                         signupPasswordInput.value = '';
                         signupPasswordRepitInput.value = '';
+                        accountStatus = true;
+                        nameUserSpan.innerText = userInfo.name;
+                        signupDiv.classList.remove('div_active');
+                        wraper.classList.remove('wraper_active');
+                        body.classList.remove('wraper_scroll-none');
                     } else {
                         alert('Эл. почта уже используется');
                     }
@@ -213,15 +504,35 @@ buttonLogin.onclick = function () {
     if (savedEmailLogin == null) {
         alert('Аккаунт не найден');
     } else {
-        if (loginPasswordInput.value == savedEmailLogin) {
+        if (loginPasswordInput.value == JSON.parse(savedEmailLogin).password) {
             alert('Вы успешно вошли в аккаунт');
             loginEmailInput.value = '';
             loginPasswordInput.value = '';
             loginDiv.classList.remove('div_active');
+            wraper.classList.remove('wraper_active');
+            body.classList.remove('wraper_scroll-none');
+            accountStatus = true;
+            nameUserSpan.innerText = JSON.parse(savedEmailLogin).name;
         } else {
             alert('Пароль неверный')
         }
     }
+}
+
+buttonLogOut.onclick = function () {
+    accountStatus = false;
+    nameUserSpan.innerText = 'Войти';
+    accountSettingsDiv.classList.remove('account-settings-div_active');
+    wraper.classList.remove('wraper_active');
+    body.classList.remove('wraper_scroll-none');
+
+    basketList = [];
+
+    categoriesCardStore = categoriesCardStoreBasic;
+    categoriesCardRender('all');
+
+    newModelsCardStore = newModelsCardStoreBasic;
+    newModelsCardRender();
 }
 
 
@@ -395,7 +706,7 @@ for (let i = 0; i < 4; i++) {
 
 
 
-const categoriesCardStore = [                    /**Создаем базу данных, куда попадают все данные карточек с кроссовками.**/
+let categoriesCardStore = [                    /**Создаем базу данных, куда попадают все данные карточек с кроссовками.**/
     {
         img: '1',
         name: 'Luka 1',
@@ -560,7 +871,7 @@ function categoriesCardRender(type) {       /**Создается функция
         for (let i = 0; i < categoriesCardStore.length; i++) {
             const cardInfo = categoriesCardStore[i]
             const categoriesCardDiv = document.createElement('div');
-            categoriesCardDiv.className = 'categories__card card'; 
+            categoriesCardDiv.className = 'categories__card card';
 
             categoriesCardDiv.innerHTML = `
             <div class="card__photo">
@@ -653,7 +964,7 @@ function categoriesCardRender(type) {       /**Создается функция
 categoriesCardRender('all'); /**При обновлении страницы показывает все карточки**/
 
 
-const newModelsCardStore = [
+let newModelsCardStore = [
     {
         bgColorNewModels: '#B7A997',
         imgPath: 'new-models',
@@ -709,6 +1020,7 @@ const newModelsCardStore = [
 
 function newModelsCardRender() {
     const newModelsListDiv = document.querySelector('.new-models__list');
+    newModelsListDiv.innerHTML = ``
     for (let i = 0; i < newModelsCardStore.length; i++) {
         const cardInfo = newModelsCardStore[i];
         const cardDiv = document.createElement('div'); //оболочка карточки
@@ -761,26 +1073,36 @@ function heartsClick() {
     const hearts = document.querySelectorAll('.heart');
     for (let i = 0; i < hearts.length; i++) {
         hearts[i].onclick = function () {
-            hearts[i].classList.toggle('heart-active');
- 
-            const favoritesCardName = hearts[i].parentNode.parentNode.querySelector('h3').innerText;
 
-            for (let j = 0; j < categoriesCardStore.length; j++) {
-                if (categoriesCardStore[j].name === favoritesCardName) {
-                    categoriesCardStore[j].stateHeart = hearts[i].className;
-                    heartsToggleCard(hearts[i], favoritesCardName, categoriesCardStore[j]);
-                    return;
-                }
-            }
+            if (accountStatus === true) {
+                hearts[i].classList.toggle('heart-active');
 
-            for (let t = 0; t < newModelsCardStore.length; t++) {
-                if (newModelsCardStore[t].name === favoritesCardName) {
-                    newModelsCardStore[t].stateHeart = hearts[i].className;
-                    heartsToggleCard(hearts[i], favoritesCardName, newModelsCardStore[t]);
-                    return;
+                const favoritesCardName = hearts[i].parentNode.parentNode.querySelector('h3').innerText;
+
+                for (let j = 0; j < categoriesCardStore.length; j++) {
+                    if (categoriesCardStore[j].name === favoritesCardName) {
+                        categoriesCardStore[j].stateHeart = hearts[i].className;
+                        heartsToggleCard(hearts[i], favoritesCardName, categoriesCardStore[j]);
+                        return;
+                    }
                 }
+
+                for (let t = 0; t < newModelsCardStore.length; t++) {
+                    if (newModelsCardStore[t].name === favoritesCardName) {
+                        newModelsCardStore[t].stateHeart = hearts[i].className;
+                        heartsToggleCard(hearts[i], favoritesCardName, newModelsCardStore[t]);
+                        return;
+                    }
+                }
+            } else {
+                signupDiv.classList.toggle('div_active');
+                searchDiv.classList.remove('div_active');
+                loginDiv.classList.remove('div_active');
+                basketDiv.classList.remove('basket-div_active');
+
+                wraper.classList.add('wraper_active');
+                body.classList.add('wraper_scroll-none');
             }
-            
         }
     }
 }
@@ -833,49 +1155,54 @@ function buttonsAddTobasketClick() {
     const buttonsAddTobasket = document.querySelectorAll('.buttons-add-to-basket');
     for (let i = 0; i < buttonsAddTobasket.length; i++) {
         buttonsAddTobasket[i].onclick = function () {
-            buttonsAddTobasket[i].classList.toggle('buttons_active');
+            if (accountStatus === true) {
+                buttonsAddTobasket[i].classList.toggle('buttons_active');
 
-            if (buttonsAddTobasket[i].className === 'buttons-add-to-basket') {
-                buttonsAddTobasket[i].innerText = 'В корзину';
+                if (buttonsAddTobasket[i].className === 'buttons-add-to-basket') {
+                    buttonsAddTobasket[i].innerText = 'В корзину';
+                } else {
+                    buttonsAddTobasket[i].innerText = 'Уже в корзине';
+                }
+
+                const cardName = buttonsAddTobasket[i].parentNode.parentNode.querySelector('h3').innerText;
+
+                // Обновляем `categoriesCardStore`
+                for (let j = 0; j < categoriesCardStore.length; j++) {
+                    if (categoriesCardStore[j].name === cardName) {
+                        categoriesCardStore[j].stateButton = buttonsAddTobasket[i].className;
+                        categoriesCardStore[j].textButton = buttonsAddTobasket[i].innerText;
+
+                        // Вызываем функцию с правильным элементом
+                        basketToggleCard(buttonsAddTobasket[i], cardName, categoriesCardStore[j]);
+                        return;
+                    }
+                }
+
+                // Обновляем `newModelsCardStore`
+                for (let t = 0; t < newModelsCardStore.length; t++) {
+                    if (newModelsCardStore[t].name === cardName) {
+                        newModelsCardStore[t].stateButton = buttonsAddTobasket[i].className;
+                        newModelsCardStore[t].textButton = buttonsAddTobasket[i].innerText;
+
+                        // Вызываем функцию с правильным элементом
+                        basketToggleCard(buttonsAddTobasket[i], cardName, newModelsCardStore[t]);
+                        return;
+                    }
+                }
             } else {
-                buttonsAddTobasket[i].innerText = 'Уже в корзине';
+                signupDiv.classList.toggle('div_active');
+                searchDiv.classList.remove('div_active');
+                loginDiv.classList.remove('div_active');
+                basketDiv.classList.remove('basket-div_active');
+
+                wraper.classList.add('wraper_active');
+                body.classList.add('wraper_scroll-none');
             }
 
-            const cardName = buttonsAddTobasket[i].parentNode.parentNode.querySelector('h3').innerText;
 
-            // Обновляем `categoriesCardStore`
-            for (let j = 0; j < categoriesCardStore.length; j++) {
-                if (categoriesCardStore[j].name === cardName) {
-                    categoriesCardStore[j].stateButton = buttonsAddTobasket[i].className;
-                    categoriesCardStore[j].textButton = buttonsAddTobasket[i].innerText;
-
-                    // Вызываем функцию с правильным элементом
-                    basketToggleCard(buttonsAddTobasket[i], cardName, categoriesCardStore[j]);
-                    return;
-                }
-            }
-
-            // Обновляем `newModelsCardStore`
-            for (let t = 0; t < newModelsCardStore.length; t++) {
-                if (newModelsCardStore[t].name === cardName) {
-                    newModelsCardStore[t].stateButton = buttonsAddTobasket[i].className;
-                    newModelsCardStore[t].textButton = buttonsAddTobasket[i].innerText;
-                    
-                    // Вызываем функцию с правильным элементом
-                    basketToggleCard(buttonsAddTobasket[i], cardName, newModelsCardStore[t]);
-                    return;
-                }
-            }
         };
     }
 }
-
-
-
-
-basketList = [
-
-]
 
 
 
