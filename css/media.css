@@ -342,6 +342,38 @@
             }
         }
     }
+
+    .basket-div {
+        & .basket-list-card { 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 12px !important; 
+
+            & .basket-list-card__info {
+                align-items: center !important;
+                gap: 12px !important; 
+            }
+        }
+    }
+
+    .favorites-div {
+        & .favorites-list-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 12px !important;
+        }
+
+        & .favorites-list-card__info {
+            align-items: center !important;
+            gap: 12px !important;
+        }
+    }
 }
 
 @media (max-width: 600px) {
@@ -403,11 +435,10 @@
         }
 
         & div {
-            & input {
-                height: 40px;
+            /* & input {
                 width: 100%;
                 padding: 8px;
-            }
+            } */
 
             & .signup-label {
                 font-size: 14px;
@@ -435,7 +466,6 @@
         & div {
 
             & input {
-                height: 40px;
                 width: 100%;
                 padding: 8px;
             }
@@ -449,7 +479,31 @@
     }
 
     .basket-div {
-        
+        & .basket__list {
+            & .basket-list-card {
+                & .basket-card__photo {
+                    width: 80%;
+                    max-width: 1000px;
+                    padding: 10px;
+                }
+            }
+        }
+    }
+
+    .favorites-div {
+        & .favorites__list {
+            & .favorites-list-card {
+                & .favorites-card__photo {
+                    width: 80%;
+                    max-width: 1000px;
+                    padding: 10px;
+                }
+            }
+        }
+    }
+
+    .account-settings-div {
+        width: 80%;
     }
 }
 
@@ -615,6 +669,30 @@
             }
         }
     }
+
+    .basket-div {
+        & .basket__list {
+            & .basket-list-card {
+                & .basket-card__photo {
+                    width: 100%;
+                    max-width: 1000px;
+                    padding: 10px;
+                }
+            }
+        }
+    }
+
+    .favorites-div {
+        & .favorites__list {
+            & .favorites-list-card {
+                & .favorites-card__photo {
+                    width: 100%;
+                    max-width: 1000px;
+                    padding: 10px;
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 420px) {
@@ -676,7 +754,6 @@
 
         & div {
             & input {
-                height: 40px;
                 width: 100%;
                 padding: 8px;
             }
@@ -710,7 +787,7 @@
         width: 70%;
 
         & .search__list {
-            
+
             & .search-card {
 
                 & .search-card__info {
