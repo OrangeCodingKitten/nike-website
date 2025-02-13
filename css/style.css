@@ -71,7 +71,8 @@ body {
   z-index: 11;
   transition: 0.3s;
 
-  top: 0; /* Чтобы врапер не отступал сверху */
+  top: 0;
+  /* Чтобы врапер не отступал сверху */
 }
 
 .wraper_active {
@@ -673,7 +674,7 @@ body {
       color: black;
     }
 
-    & input:focus + .login-label {
+    & input:focus+.login-label {
       top: -20px;
     }
   }
@@ -707,14 +708,37 @@ body {
   display: flex;
   flex-direction: column;
   z-index: 12;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  /* & h3 {
-
+  h3 {
+    text-align: center;
   }
 
   & .button-log-out {
-    
-  } */
+    font-family: Comfortaa;
+    font-size: 16px;
+    font-weight: 700;
+    min-width: max-content;
+    width: 106px;
+    height: 34px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 40px;
+    border: none;
+    transition: 0.5s;
+    background-color: var(--color3);
+    color: var(--color1);
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px var(--color3) solid;
+
+    &:hover {
+      background-color: var(--color1);
+      color: var(--color3);
+    }
+  }
 }
 
 .account-settings-div_active {
@@ -889,7 +913,7 @@ body {
     }
   }
 
-  
+
 
   .nav__button_user {
     font-size: 40px;
@@ -977,7 +1001,7 @@ header {
       }
     }
 
-    & > p {
+    &>p {
       max-height: 457px;
       font-size: 16px;
       font-weight: 400;
@@ -1241,8 +1265,7 @@ header {
       background: transparent;
     }
 
-    & .categories__card {
-    }
+    & .categories__card {}
 
     & .card {
       width: 400px;
@@ -1429,8 +1452,7 @@ header {
       visibility: hidden;
       transition: 0.5s;
 
-      &:hover {
-      }
+      &:hover {}
     }
 
     & .new-models-card__info {
@@ -1505,7 +1527,7 @@ header {
       transition: 0.5s;
       border: 2px solid var(--color1);
       cursor: pointer;
-      
+
     }
 
     & .buttons_active {

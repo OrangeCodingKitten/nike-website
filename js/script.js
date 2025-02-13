@@ -21,7 +21,8 @@ const basketButtonOpen = document.querySelector('#basketButtonOpen');
 const basketListDiv = document.querySelector('.basket__list');
 
 const signupDiv = document.querySelector('.signup-div');
-const buttonSignupOpen = document.getElementById('button-signup-open')
+const buttonSignupOpen = document.querySelector('#button-signup-open');
+console.log(buttonSignupOpen);
 const signupButtonClose = document.querySelector('.signup-button-close');
 
 const buttonLoginLink = document.querySelector('.button-login-link');
@@ -367,7 +368,8 @@ basketButtonClose.onclick = function () {
     body.classList.remove('wraper_scroll-none');
 }
 
-buttonSignupOpen.onclick = function () {
+buttonSignupOpen.addEventListener('click', () => {
+    console.log("jfw9ufrtweitwh89335t")
     if (accountStatus === false) {
         signupDiv.classList.toggle('div_active');
         searchDiv.classList.remove('div_active');
@@ -381,7 +383,7 @@ buttonSignupOpen.onclick = function () {
         wraper.classList.add('wraper_active');
         body.classList.add('wraper_scroll-none');
     }
-}
+})
 
 accountSettingsButtonClose.onclick = function () {
     accountSettingsDiv.classList.remove('account-settings-div_active');
